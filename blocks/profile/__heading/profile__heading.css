@@ -1,0 +1,6 @@
+.profile__heading {
+    display: flex;
+    align-items: center;
+    height: 43px;
+    margin-bottom: 16px;
+}
