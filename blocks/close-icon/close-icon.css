@@ -4,4 +4,10 @@
     height: 40.7px;
     top: -40.7px;
     right: -40.7px;
+    transition: opacity .2s linear;
+    cursor: pointer;
+}
+
+.close-icon:hover {
+    opacity: .6;
 }

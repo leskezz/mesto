@@ -7,4 +7,10 @@
     border: 2px solid #FFFFFF;
     border-radius: 2px;
     text-align: center;
+    transition: opacity .2s linear;
+    cursor: pointer;
+}
+
+.add-button:hover {
+    opacity: .6;
 }
