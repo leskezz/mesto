@@ -8,7 +8,7 @@
 .popup {
     width: 430px;
     height: 330px;
-    position: absolute;
+    position: fixed;
     z-index: 2;
     top: calc(50% - 165px);
     left: calc(50% - 215px);
@@ -16,4 +16,6 @@
     color: #000000;
     box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
     border-radius: 10px;
+    display: none;
+    transition: display .5s linear;
 }
