@@ -4,3 +4,10 @@
     height: 43px;
     margin-bottom: 16px;
 }
+
+@media screen and (max-width: 624px) {
+    .profile__heading {
+        height: 38px;
+        margin-bottom: 14px;
+    }
+}

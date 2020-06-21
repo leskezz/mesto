@@ -1,5 +1,13 @@
 .add-button__image {
     max-width: 22px;
     max-height: 22px;
-    margin-top: 12px;
+    margin: 0 auto;
+    display: block;
+}
+
+@media screen and (max-width: 624px) {
+    .add-button__image {
+        max-width: 16px;
+        max-height: 16px;
+    }
 }

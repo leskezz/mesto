@@ -2,8 +2,15 @@
 
 .header {
     height: 120px;
-    display: flex;
-    align-items: center;
+    padding-top: 45px;
     box-sizing: border-box;
     border-bottom: 1px solid rgba(84, 84, 84, .7);
+}
+
+@media screen and (max-width: 624px) {
+    .header {
+        height: 84px;
+        padding: 28px 27px 0;
+        max-width: 621px;
+    }
 }

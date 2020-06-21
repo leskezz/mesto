@@ -6,11 +6,18 @@
     box-sizing: border-box;
     border: 2px solid #FFFFFF;
     border-radius: 2px;
-    text-align: center;
     transition: opacity .2s linear;
     cursor: pointer;
+    padding: 12px 0 0;
 }
 
 .add-button:hover {
     opacity: .6;
+}
+
+@media screen and (max-width: 624px) {
+    .add-button {
+        width: 100%;
+        padding-top: 15px;
+    }
 }

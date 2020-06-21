@@ -1,3 +1,9 @@
 .content {
     transition: opacity .3s linear;
 }
+
+@media screen and (max-width: 624px) {
+    .content {
+        padding: 0 20px 0;
+    }
+}

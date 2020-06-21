@@ -19,3 +19,9 @@
     display: none;
     transition: display .3s linear;
 }
+@media screen and (max-width: 530px) {
+    .popup {
+        width: calc(100% - 100px);
+        left: 50px;
+    }
+}

@@ -5,4 +5,17 @@
     grid-gap: 20px 18px;
     list-style: none;
     padding: 0;
+    margin: 0;
+}
+
+@media screen and (min-width: 1500px) {
+    .elements__grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media screen and (max-width: 624px) {
+    .elements__grid {
+        grid-template-columns: 1fr;
+    }
 }
