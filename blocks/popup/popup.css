@@ -1,0 +1,19 @@
+@import url(./__form/popup__form.css);
+@import url(./__heading/popup__heading.css);
+@import url(./__input-container/popup__input-container.css);
+@import url(./__item/popup__item.css);
+@import url(./__item/_el/popup__item_el_name.css);
+@import url(./__item/_el/popup__item_el_profession.css);
+
+.popup {
+    width: 430px;
+    height: 330px;
+    position: absolute;
+    z-index: 2;
+    top: calc(50% - 165px);
+    left: calc(50% - 215px);
+    background: #FFFFFF;
+    color: #000000;
+    box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+}
