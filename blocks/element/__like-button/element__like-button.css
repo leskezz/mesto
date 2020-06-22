@@ -1,6 +1,16 @@
-.element__like-button{
+.element__like-button {
     height: 18.13px;
     width: 20.76px;
     margin-left: 10px;
-    object-fit: contain;
+    background: none;
+    box-sizing: border-box;
+    border: none;
+    padding: 0;
+    transition: opacity .2s linear;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.element__like-button:hover {
+    opacity: .6;
 }

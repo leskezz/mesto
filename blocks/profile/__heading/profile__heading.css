@@ -1,13 +1,4 @@
 .profile__heading {
     display: flex;
-    align-items: center;
-    height: 43px;
-    margin-bottom: 16px;
-}
-
-@media screen and (max-width: 624px) {
-    .profile__heading {
-        height: 38px;
-        margin-bottom: 14px;
-    }
+    max-width: 100%;
 }

@@ -1,4 +1,6 @@
-.close-icon {
+@import url(./__image/close-button__image.css);
+
+.close-button {
     position: absolute;
     width: 40.7px;
     height: 40.7px;
@@ -7,14 +9,18 @@
     transition: opacity .2s linear;
     cursor: pointer;
     transform: rotate(45deg);
+    padding: 0;
+    border: none;
+    background: none;
+    box-sizing: border-box;
 }
 
-.close-icon:hover {
+.close-button:hover {
     opacity: .6;
 }
 
 @media screen and (max-width: 551.4px) {
-    .close-icon {
+    .close-button {
         width: 30px;
         height: 30px;
         top: -30px;

@@ -1,12 +1,49 @@
 .profile__info {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    max-width: 800px;
+}
+
+@media screen and (max-width: 1600px) {
+    .profile__info {
+        max-width: 600px;
+    }
+}
+
+@media screen and (max-width: 1370px) {
+    .profile__info {
+        max-width: 500px;
+    }
+}
+
+@media screen and (max-width: 1021px) {
+    .profile__info {
+        max-width: 400px;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .profile__info {
+        max-width: 300px;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .profile__info {
+        max-width: 240px;
+    }
 }
 
 @media screen and (max-width: 624px) {
     .profile__info {
         align-items: center;
         margin-bottom: 36px;
+        max-width: 300px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .profile__info {
+        max-width: 240px;
     }
 }

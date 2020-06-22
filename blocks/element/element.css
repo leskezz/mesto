@@ -2,6 +2,7 @@
 @import url(./__image/element__image.css);
 @import url(./__info/element__info.css);
 @import url(./__like-button/element__like-button.css);
+@import url(./__like-image/element__like-image.css);
 
 .element {
     background: #FFFFFF;

@@ -1,6 +1,5 @@
 .profile__profession {
-    width: 295px;
-    margin: 0;
+    margin: 16px 0 0;
     font-style: normal;
     font-weight: normal;
     font-size: 18px;
@@ -8,11 +7,11 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+    max-width: 100%;
 }
 
 @media screen and (max-width: 800px) {
     .profile__profession {
-        width: 280px;
         font-size: 14px;
         line-height: 1.214;
     }
@@ -21,5 +20,6 @@
 @media screen and (max-width: 624px) {
     .profile__profession {
         text-align: center;
+        margin-top: 14px;
     }
 }
