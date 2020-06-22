@@ -20,7 +20,7 @@
     opacity: .8;
 }
 
-@media screen and (max-width: 624px) {
+@media screen and (max-width: 551.4px) {
     .save-button {
         font-size: 14px;
     }
