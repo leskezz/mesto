@@ -1,6 +1,4 @@
-@import url(./__image/add-button__image.css);
-
-.add-button {
+.profile__add-button {
     width: 150px;
     height: 50px;
     box-sizing: border-box;
@@ -12,12 +10,12 @@
     flex-shrink: 0;
 }
 
-.add-button:hover {
+.profile__add-button:hover {
     opacity: .6;
 }
 
 @media screen and (max-width: 624px) {
-    .add-button {
+    .profile__add-button {
         width: 100%;
     }
 }

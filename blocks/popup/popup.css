@@ -2,6 +2,9 @@
 @import url(./__heading/popup__heading.css);
 @import url(./__input-container/popup__input-container.css);
 @import url(./__item/popup__item.css);
+@import url(./__save-button/popup__save-button.css);
+@import url(./__close-button/popup__close-button.css);
+@import url(./__close-image/popup__close-image.css);
 @import url(./__item/_el/popup__item_el_name.css);
 @import url(./__item/_el/popup__item_el_profession.css);
 
