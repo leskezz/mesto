@@ -1,6 +1,4 @@
-@import url(./__image/edit-button__image.css);
-
-.edit-button {
+.profile__edit-button {
     width: 24px;
     height: 24px;
     box-sizing: border-box;
@@ -13,18 +11,18 @@
     flex-shrink: 0;
 }
 
-.edit-button:hover {
+.profile__edit-button:hover {
     opacity: .6;
 }
 
 @media screen and (max-width: 800px) {
-    .edit-button {
+    .profile__edit-button {
         margin: 32px 0 0 10px;
     }
 }
 
 @media screen and (max-width: 624px) {
-    .edit-button {
+    .profile__edit-button {
         width: 18px;
         height: 18px;
         margin: 20px 0 0 7px;
