@@ -4,8 +4,6 @@
 @import url(./__item/popup__item.css);
 @import url(./__item/_el/popup__item_el_name.css);
 @import url(./__item/_el/popup__item_el_profession.css);
-@import url(./_opened/popup_opened.css);
-@import url(./_closed/popup_closed.css);
 
 .popup {
     position: fixed;
@@ -19,4 +17,5 @@
     border-radius: 10px;
     align-items: center;
     justify-content: center;
+    display: none;
 }

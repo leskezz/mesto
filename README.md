@@ -11,4 +11,4 @@
 * Возможность вносить изменения в элементы блока profile с помощью применения Javascript;
 
 Проект размещён на github-pages - [ссылка](https://leskezz.github.io/mesto/index.html).
-------
+------ 
