@@ -66,7 +66,22 @@ function addCard(cardData) {
     card.querySelector('.element__image').src = cardData.link;
     card.querySelector('.element__image').alt = cardData.name;
     emptyElement.remove();
+    addCardListeners(card);
     cardsListElement.prepend(card);
+}
+
+function addCardListeners(card) {
+  card.querySelector('.element__delete-button').addEventListener('click', handleDelete);
+  card.querySelector('.element__like-button').addEventListener('click', handleLike);
+}
+
+function handleDelete (evt) {
+    let card = evt.target.closest('.element');
+    card.remove();
+}
+
+function handleLike (evt) {
+    evt.target.classList.toggle('element__like-button_active');
 }
 
 initialCards.forEach(cardData => {

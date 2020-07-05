@@ -8,6 +8,11 @@
     cursor: pointer;
     flex-shrink: 0;
     line-height: 0;
+    height: 18.13px;
+    width: 20.76px;
+    background-image: url(../../../images/Element__like.svg);
+    background-size: 100%;
+    background-repeat: no-repeat;
 }
 
 .element__like-button:hover {
