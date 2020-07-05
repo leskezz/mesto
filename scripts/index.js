@@ -30,6 +30,7 @@ function formEditProfileSubmitHandler (evt) {
 }
 
 const cardsListElement = document.querySelector(".elements__grid");
+const cardTemplate = document.querySelector('.element-template');
 
 const initialCards = [
     {
@@ -59,20 +60,11 @@ const initialCards = [
 ];
 
 function addCard(cardData) {
-    const card = `
-    <li class="element">
-    <img src='${cardData.link}' alt='${cardData.name}' class="element__image">
-    <div class="element__info">
-        <h3 class="element__heading">
-            ${cardData.name}
-        </h3>
-        <button type="button" class="element__like-button">
-            <img src="./images/Element__like.svg" class="element__like-image" alt="Лайк">
-        </button>
-    </div>
-</li>
-    `
-    cardsListElement.insertAdjacentHTML('afterbegin', card);
+    const card = cardTemplate.content.cloneNode(true);
+    card.querySelector('.element__heading').textContent = cardData.name;
+    card.querySelector('.element__image').src = cardData.link;
+    card.querySelector('.element__image').alt = cardData.name;
+    cardsListElement.prepend(card);
 }
 
 initialCards.forEach(cardData => {
@@ -84,6 +76,8 @@ function formAddCardSubmitHandler (evt) {
     let newCard = {};
     newCard.name = inputPlace.value;
     newCard.link = inputLink.value;
+    inputPlace.value = '';
+    inputLink.value = '';
     addCard(newCard);
     popupToggle(popupAddCard);
 }
