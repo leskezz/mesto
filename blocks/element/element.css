@@ -3,10 +3,13 @@
 @import url(./__info/element__info.css);
 @import url(./__like-button/element__like-button.css);
 @import url(./__like-image/element__like-image.css);
+@import url(./__delete-button/element__delete-button.css);
+@import url(./__delete-image/element__delete-image.css);
 
 .element {
     background: #FFFFFF;
     border-radius: 10px;
     color: #000000;
     overflow: hidden;
+    position: relative;
 }
