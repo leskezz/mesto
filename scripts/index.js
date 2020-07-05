@@ -29,8 +29,9 @@ function formEditProfileSubmitHandler (evt) {
     popupToggle(popupEditProfile);
 }
 
-const cardsListElement = document.querySelector(".elements__grid");
+const cardsListElement = content.querySelector(".elements__grid");
 const cardTemplate = document.querySelector('.element-template');
+const emptyElement = content.querySelector('.element_empty');
 
 const initialCards = [
     {
@@ -64,6 +65,7 @@ function addCard(cardData) {
     card.querySelector('.element__heading').textContent = cardData.name;
     card.querySelector('.element__image').src = cardData.link;
     card.querySelector('.element__image').alt = cardData.name;
+    emptyElement.remove();
     cardsListElement.prepend(card);
 }
 
