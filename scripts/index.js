@@ -9,16 +9,20 @@ let profileName = content.querySelector('.profile__name');
 let profileProfession = content.querySelector('.profile__profession');
 let inputName = popupEditProfile.querySelector('.popup__item_el_name');
 let inputProfession = popupEditProfile.querySelector('.popup__item_el_profession');
+let inputPlace = popupAddCard.querySelector('.popup__item_el_place');
+let inputLink = popupAddCard.querySelector('.popup__item_el_link');
 
 function popupToggle(popup) {
     popup.classList.toggle('popup_opened')
-    if (popupEditProfile.classList.contains('popup_opened')) {
+    if (popup.classList.contains('popup_opened')) {
         inputName.value = profileName.textContent;
         inputProfession.value = profileProfession.textContent;
+        inputPlace.value = '';
+        inputLink.value = '';
     }
 }
 
-function formSubmitHandler (evt) {
+function formEditProfileSubmitHandler (evt) {
     evt.preventDefault();
     profileName.textContent = inputName.value;
     profileProfession.textContent = inputProfession.value;
@@ -57,7 +61,7 @@ const initialCards = [
 function addCard(cardData) {
     const card = `
     <li class="element">
-    <img src="${cardData.link}" alt="Фото карточки" class="element__image">
+    <img src='${cardData.link}' alt='${cardData.name}' class="element__image">
     <div class="element__info">
         <h3 class="element__heading">
             ${cardData.name}
@@ -75,8 +79,18 @@ initialCards.forEach(cardData => {
     addCard(cardData);
 });
 
-popupEditProfile.addEventListener('submit', formSubmitHandler);
+function formAddCardSubmitHandler (evt) {
+    evt.preventDefault();
+    let newCard = {};
+    newCard.name = inputPlace.value;
+    newCard.link = inputLink.value;
+    addCard(newCard);
+    popupToggle(popupAddCard);
+}
+
+popupEditProfile.addEventListener('submit', formEditProfileSubmitHandler);
 editButton.addEventListener('click', () => { popupToggle(popupEditProfile)});
-addCardButton.addEventListener('click', () => { popupToggle(popupAddCard)});
 closeButtonPopupEditProfile.addEventListener('click', () => { popupToggle(popupEditProfile)});
 closeButtonPopupAddCard.addEventListener('click', () => { popupToggle(popupAddCard)});
+addCardButton.addEventListener('click', () => { popupToggle(popupAddCard)});
+popupAddCard.addEventListener('submit', formAddCardSubmitHandler);
