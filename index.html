@@ -51,7 +51,7 @@
 
             </section>
 
-            <section class="popup">
+            <section class="popup popup_edit_profile">
 
                 <form name ="formEditProfile" class="popup__form">
     
@@ -63,6 +63,27 @@
                     </fieldset>
     
                     <button type="submit" class="popup__save-button">Сохранить</button>
+                    
+                    <button type="button" class="popup__close-button">
+                        <img src="./images/Add-button__plus.svg" class="popup__close-image" alt="Закрыть">
+                    </button>
+    
+                </form>
+    
+            </section>
+
+            <section class="popup popup_edit_add-element">
+
+                <form name ="formAddElement" class="popup__form">
+    
+                    <h3 class="popup__heading">Новое место</h3>
+                    
+                    <fieldset class="popup__input-container">
+                        <input type="text" class="popup__item popup__item_el_place" placeholder="Название" name="place">
+                        <input type="text" class="popup__item popup__item_el_link" placeholder="Ссылка на картинку" name="link">
+                    </fieldset>
+    
+                    <button type="submit" class="popup__save-button">Создать</button>
                     
                     <button type="button" class="popup__close-button">
                         <img src="./images/Add-button__plus.svg" class="popup__close-image" alt="Закрыть">
