@@ -1,0 +1,7 @@
+@import url(./__heading/card-full-size__heading.css);
+@import url(./__image/card-full-size__image.css);
+
+.card-full-size {
+    position: relative;
+    line-height: 0;
+}

@@ -1,0 +1,10 @@
+.card-full-size__heading {
+    position: absolute;
+    left: 0;
+    bottom: -25px;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 15px;
+    margin: 0;
+}
