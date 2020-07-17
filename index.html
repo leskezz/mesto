@@ -55,13 +55,15 @@
 
             <section class="popup popup_btn_edit-profile">
 
-                <form name ="formEditProfile" class="popup__form">
+                <form name ="formEditProfile" class="popup__form" novalidate>
     
                     <h3 class="popup__heading">Редактировать профиль</h3>
                     
                     <fieldset class="popup__input-container">
-                        <input type="text" class="popup__item popup__item_el_name" placeholder="Ваше имя" name="name">
-                        <input type="text" class="popup__item popup__item_el_profession" placeholder="Ваш род занятий" name="profession">
+                        <input id="input__name" type="text" class="popup__item popup__item_el_name" placeholder="Ваше имя" name="name" minlength="2" maxlength="40" required>
+                        <span id="input__name-error" class="popup__input-error"></span>
+                        <input id="input__profession" type="text" class="popup__item popup__item_el_profession" placeholder="Ваш род занятий" name="profession" minlength="2" maxlength="200" required>
+                        <span id="input__profession-error" class="popup__input-error"></span>
                     </fieldset>
     
                     <button type="submit" class="popup__save-button">Сохранить</button>

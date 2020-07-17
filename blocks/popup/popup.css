@@ -2,12 +2,16 @@
 @import url(./__heading/popup__heading.css);
 @import url(./__input-container/popup__input-container.css);
 @import url(./__item/popup__item.css);
+@import url(./__item/_type/popup__item_type_error.css);
 @import url(./__save-button/popup__save-button.css);
 @import url(./__close-button/popup__close-button.css);
 @import url(./__close-image/popup__close-image.css);
 @import url(./_btn/popup_btn_add-element.css);
 @import url(./_btn/popup_btn_card-image.css);
 @import url(./_btn/popup_btn_edit-profile.css);
+@import url(./__input-error/popup__input-error.css);
+@import url(./__input-error/_active/popup__input-error_active.css);
+@import url(./__save-button/_inactive/popup__save-button_inactive.css);
 
 .popup {
     position: fixed;
