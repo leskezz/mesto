@@ -82,18 +82,18 @@
 
             <section class="popup popup_btn_add-element">
 
-                <form name ="formAddElement" class="popup__form">
+                <form name ="formAddElement" class="popup__form" novalidate>
     
                     <h3 class="popup__heading">Новое место</h3>
                     
                     <fieldset class="popup__inputs-container">
                         <label class ="popup__input-container">
-                            <input type="text" class="popup__item popup__item_el_place" placeholder="Название" name="place" required>
-                            <span id="input__name-error" class="popup__input-error"></span>
+                            <input id="input__place" type="text" class="popup__item popup__item_el_place" placeholder="Название" name="place" minlength="1" maxlength="30" required>
+                            <span id="input__place-error" class="popup__input-error"></span>
                         </label>
                         <label class ="popup__input-container">
-                            <input type="text" class="popup__item popup__item_el_link" placeholder="Ссылка на картинку" name="link" required>
-                            <span id="input__profession-error" class="popup__input-error"></span>
+                            <input id="input__link" type="url" class="popup__item popup__item_el_link" placeholder="Ссылка на картинку" name="link" required>
+                            <span id="input__link-error" class="popup__input-error"></span>
                         </label>
                     </fieldset>
     
