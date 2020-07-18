@@ -84,6 +84,22 @@ function openPopupCard (evt) {
     popupToggle(popupCardFullSize);
 }
 
+function closePopupOnOverlay (evt) {
+    const overlay = evt.target;
+    if (overlay.classList.contains('popup')) {
+        popupToggle(overlay);
+    }
+}
+
+function addOverlayListeners () {
+    const popupList = document.querySelectorAll('.popup')
+    popupList.forEach ((popup) => {
+        popup.addEventListener('click', closePopupOnOverlay);
+    })
+}
+
+addOverlayListeners();
+
 popupEditProfile.addEventListener('submit', formEditProfileSubmitHandler);
 editButton.addEventListener('click', () => { popupToggle(popupEditProfile)});
 closeButtonPopupEditProfile.addEventListener('click', () => { popupToggle(popupEditProfile)});
