@@ -26,6 +26,9 @@ function popupToggle(popup) {
         inputProfession.value = profileProfession.textContent;
         inputPlace.value = '';
         inputLink.value = '';
+        addOverlayListeners(popup);
+    } else {
+        removeOverlayListeners(popup);
     }
 }
 
@@ -88,17 +91,25 @@ function closePopupOnOverlay (evt) {
     const overlay = evt.target;
     if (overlay.classList.contains('popup')) {
         popupToggle(overlay);
+        console.log('click');
     }
 }
 
-function addOverlayListeners () {
-    const popupList = document.querySelectorAll('.popup')
-    popupList.forEach ((popup) => {
-        popup.addEventListener('click', closePopupOnOverlay);
-    })
+function closePopupOnEscape (evt) {
+    if (evt.key === 'Escape') {
+        popupToggle(document.querySelector('.popup_opened'));
+    } 
 }
 
-addOverlayListeners();
+function addOverlayListeners (popup) {
+        popup.addEventListener('click', closePopupOnOverlay);
+        window.addEventListener('keydown', closePopupOnEscape);
+}
+
+function removeOverlayListeners (popup) {
+        popup.removeEventListener('click', closePopupOnOverlay);
+        window.removeEventListener('keydown', closePopupOnEscape);
+}
 
 popupEditProfile.addEventListener('submit', formEditProfileSubmitHandler);
 editButton.addEventListener('click', () => { popupToggle(popupEditProfile)});
