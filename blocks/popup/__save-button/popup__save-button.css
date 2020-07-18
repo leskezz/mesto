@@ -10,9 +10,11 @@
     text-align: center;
     color: #FFFFFF;
     border: none;
-    padding: 13.66px 0 15.50px 0;
+    padding: 12.66px 0 14.50px 0;
     transition: opacity .2s linear;
     cursor: pointer;
+    border: 1px solid #000000;
+    box-sizing: border-box;
 }
 
 .popup__save-button:hover {

@@ -1,5 +1,9 @@
 .popup__input-container {
-    border: none;
-    padding: 0;
-    margin: 54px 0 0;
+    margin: 0 0 29.74px;
+    display: block;
+    position: relative;
+}
+
+.popup__input-container:last-of-type {
+    margin-bottom: 0;
 }
