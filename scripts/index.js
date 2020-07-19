@@ -39,12 +39,17 @@ function formEditProfileSubmitHandler (evt) {
     popupToggle(popupEditProfile);
 }
 
-function addCard(cardData) {
+function createCard(cardData) {
     const card = cardTemplate.content.cloneNode(true);
     card.querySelector('.element__heading').textContent = cardData.name;
     const cardImage = card.querySelector('.element__image');
     cardImage.src = cardData.link;
     cardImage.alt = cardData.name;
+    return card;
+}
+
+function addCard(cardData) {
+    const card = createCard(cardData);
     emptyElement.remove();
     addCardListeners(card);
     cardsListElement.prepend(card);
