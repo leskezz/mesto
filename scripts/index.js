@@ -10,17 +10,17 @@ const closeButtonPopupCardFullSize = popupCardFullSize.querySelector('.popup__cl
 const cardsListElement = content.querySelector('.elements__grid');
 const cardTemplate = document.querySelector('.element-template');
 const emptyElement = content.querySelector('.element_empty');
-let profileName = content.querySelector('.profile__name');
-let profileProfession = content.querySelector('.profile__profession');
-let inputName = popupEditProfile.querySelector('.popup__item_el_name');
-let inputProfession = popupEditProfile.querySelector('.popup__item_el_profession');
-let inputPlace = popupAddCard.querySelector('.popup__item_el_place');
-let inputLink = popupAddCard.querySelector('.popup__item_el_link');
-let popupCardImage = popupCardFullSize.querySelector('.card-full-size__image');
-let popupCardHeading = popupCardFullSize.querySelector('.card-full-size__heading');
+const profileName = content.querySelector('.profile__name');
+const profileProfession = content.querySelector('.profile__profession');
+const inputName = popupEditProfile.querySelector('.popup__item_el_name');
+const inputProfession = popupEditProfile.querySelector('.popup__item_el_profession');
+const inputPlace = popupAddCard.querySelector('.popup__item_el_place');
+const inputLink = popupAddCard.querySelector('.popup__item_el_link');
+const popupCardImage = popupCardFullSize.querySelector('.card-full-size__image');
+const popupCardHeading = popupCardFullSize.querySelector('.card-full-size__heading');
 
 function popupToggle(popup) {
-    popup.classList.toggle('popup_opened')
+    popup.classList.toggle('popup_opened');
     if (popup.classList.contains('popup_opened')) {
         inputName.value = profileName.textContent;
         inputProfession.value = profileProfession.textContent;
@@ -42,8 +42,9 @@ function formEditProfileSubmitHandler (evt) {
 function addCard(cardData) {
     const card = cardTemplate.content.cloneNode(true);
     card.querySelector('.element__heading').textContent = cardData.name;
-    card.querySelector('.element__image').src = cardData.link;
-    card.querySelector('.element__image').alt = cardData.name;
+    const cardImage = card.querySelector('.element__image');
+    cardImage.src = cardData.link;
+    cardImage.alt = cardData.name;
     emptyElement.remove();
     addCardListeners(card);
     cardsListElement.prepend(card);
@@ -56,7 +57,7 @@ function addCardListeners(card) {
 }
 
 function handleDelete (evt) {
-    let card = evt.target.closest('.element');
+    const card = evt.target.closest('.element');
     card.remove();
 }
 
@@ -70,7 +71,7 @@ initialCards.forEach(cardData => {
 
 function formAddCardSubmitHandler (evt) {
     evt.preventDefault();
-    let newCard = {};
+    const newCard = {};
     newCard.name = inputPlace.value;
     newCard.link = inputLink.value;
     inputPlace.value = '';
@@ -81,8 +82,8 @@ function formAddCardSubmitHandler (evt) {
 
 function openPopupCard (evt) {
     popupCardImage.src = evt.target.src;
-    let card = evt.target.closest('.element');
-    let heading = card.querySelector('.element__heading');
+    const card = evt.target.closest('.element');
+    const heading = card.querySelector('.element__heading');
     popupCardHeading.textContent = heading.textContent;
     popupToggle(popupCardFullSize);
 }
@@ -91,7 +92,6 @@ function closePopupOnOverlay (evt) {
     const overlay = evt.target;
     if (overlay.classList.contains('popup')) {
         popupToggle(overlay);
-        console.log('click');
     }
 }
 
@@ -112,9 +112,9 @@ function removeOverlayListeners (popup) {
 }
 
 popupEditProfile.addEventListener('submit', formEditProfileSubmitHandler);
-editButton.addEventListener('click', () => { popupToggle(popupEditProfile)});
-closeButtonPopupEditProfile.addEventListener('click', () => { popupToggle(popupEditProfile)});
-closeButtonPopupAddCard.addEventListener('click', () => { popupToggle(popupAddCard)});
-addCardButton.addEventListener('click', () => { popupToggle(popupAddCard)});
+editButton.addEventListener('click', () => { popupToggle(popupEditProfile);});
+closeButtonPopupEditProfile.addEventListener('click', () => { popupToggle(popupEditProfile);});
+closeButtonPopupAddCard.addEventListener('click', () => { popupToggle(popupAddCard);});
+addCardButton.addEventListener('click', () => { popupToggle(popupAddCard);});
 popupAddCard.addEventListener('submit', formAddCardSubmitHandler);
-closeButtonPopupCardFullSize.addEventListener('click', () => { popupToggle(popupCardFullSize) });
+closeButtonPopupCardFullSize.addEventListener('click', () => { popupToggle(popupCardFullSize); });

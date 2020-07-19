@@ -17,14 +17,14 @@ const showInputError = (formElement, inputElement, errorMessage, inputErrorClass
       showInputError(formElement, inputElement, inputElement.validationMessage, inputErrorClass, errorClass);
     } else {
       hideInputError(formElement, inputElement, inputErrorClass, errorClass);
-    }
+    };
   };
 
   const hasInvalidInput = (inputList) => {
     return inputList.some((inputElement) => {
       return !inputElement.validity.valid;
   });
-  }
+  };
   
   const toggleButtonState = (inputList, buttonElement, inactiveButtonClass) => {
     if (hasInvalidInput(inputList)) {
@@ -33,8 +33,8 @@ const showInputError = (formElement, inputElement, errorMessage, inputErrorClass
     } else {
       buttonElement.classList.remove(inactiveButtonClass);
       buttonElement.disabled = false;
-    }
-  }
+    };
+  };
   
   const setEventListeners = (formElement, inputSelector, submitButtonSelector, inactiveButtonClass, inputErrorClass, errorClass) => {
     const inputList = Array.from(formElement.querySelectorAll(inputSelector));
