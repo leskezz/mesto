@@ -19,6 +19,16 @@ const inputLink = popupAddCard.querySelector('.popup__item_el_link');
 const popupCardImage = popupCardFullSize.querySelector('.card-full-size__image');
 const popupCardHeading = popupCardFullSize.querySelector('.card-full-size__heading');
 
+function clearForm(popup) {
+    if (!popup.classList.contains('popup_btn_card-image')) {
+        const inputList = Array.from(popup.querySelectorAll(myConfig.inputSelector));
+        const buttonElement = popup.querySelector(myConfig.submitButtonSelector);
+        const formElement = popup.querySelector(myConfig.formSelector);
+        inputList.forEach((inputElement) => { hideInputError(formElement, inputElement, myConfig.inputErrorClass, myConfig.errorClass)});
+        toggleButtonState(inputList, buttonElement, myConfig.inactiveButtonClass);
+        };
+};
+
 function openPopup(popup) {
 
     popup.classList.add('popup_opened');
@@ -29,14 +39,7 @@ function openPopup(popup) {
     inputLink.value = '';
 
     addOverlayListeners(popup);
-
-    if (!popup.classList.contains('popup_btn_card-image')) {
-    const inputList = Array.from(popup.querySelectorAll(myConfig.inputSelector));
-    const buttonElement = popup.querySelector(myConfig.submitButtonSelector);
-    const formElement = popup.querySelector(myConfig.formSelector);
-    inputList.forEach((inputElement) => { hideInputError(formElement, inputElement, myConfig.inputErrorClass, myConfig.errorClass)});
-    toggleButtonState(inputList, buttonElement, myConfig.inactiveButtonClass);
-    };
+    clearForm(popup);
 };
 
 function closePopup(popup) {
