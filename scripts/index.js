@@ -26,6 +26,9 @@ function openPopup(popup) {
     inputPlace.value = '';
     inputLink.value = '';
     addOverlayListeners(popup);
+    const inputList = Array.from(popup.querySelectorAll(myConfig.inputSelector));
+    const buttonElement = popup.querySelector(myConfig.submitButtonSelector);
+    toggleButtonState(inputList, buttonElement, myConfig.inactiveButtonClass);
 };
 
 function closePopup(popup) {

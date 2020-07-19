@@ -1,3 +1,12 @@
+const myConfig = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__item',
+  submitButtonSelector: '.popup__save-button',
+  inactiveButtonClass: 'popup__save-button_inactive',
+  inputErrorClass: 'popup__item_type_error',
+  errorClass: 'popup__input-error_active'
+};
+
 const showInputError = (formElement, inputElement, errorMessage, inputErrorClass, errorClass) => {
     const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
     inputElement.classList.add(inputErrorClass);
@@ -48,7 +57,8 @@ const showInputError = (formElement, inputElement, errorMessage, inputErrorClass
     });
   };
   
-  const enableValidation = ({ formSelector, inputSelector, submitButtonSelector, inactiveButtonClass, inputErrorClass, errorClass }) => {
+  const enableValidation = (config) => {
+    const {formSelector, inputSelector, submitButtonSelector, inactiveButtonClass, inputErrorClass, errorClass} = config;
     const formList = document.querySelectorAll(formSelector);
     formList.forEach((formElement) => {
       formElement.addEventListener('submit', function (evt) {
@@ -58,11 +68,5 @@ const showInputError = (formElement, inputElement, errorMessage, inputErrorClass
   });
 };
   
-enableValidation({
-    formSelector: '.popup__form',
-    inputSelector: '.popup__item',
-    submitButtonSelector: '.popup__save-button',
-    inactiveButtonClass: 'popup__save-button_inactive',
-    inputErrorClass: 'popup__item_type_error',
-    errorClass: 'popup__input-error_active'
-  });
+enableValidation(myConfig);
+  
