@@ -1,12 +1,4 @@
-const myConfig = {
-  inputSelector: '.popup__item',
-  submitButtonSelector: '.popup__save-button',
-  inactiveButtonClass: 'popup__save-button_inactive',
-  inputErrorClass: 'popup__item_type_error',
-  errorClass: 'popup__input-error_active'
-};
-
-class FormValidator {
+export class FormValidator {
   constructor(config, formElement) {
     this._formSelector = config.formSelector;
     this._inputSelector = config.inputSelector;
@@ -75,10 +67,4 @@ class FormValidator {
     this._setEventListeners();
   };
 };
-  
-const formList = document.querySelectorAll('.popup__form');
-formList.forEach ((formElement) => {
-  const formValidate = new FormValidator (myConfig, formElement);
-  formValidate.enableValidation();
-})
   
