@@ -9,6 +9,7 @@
 * Медиа-запросы;
 * Popup элемент;
 * Возможность вносить изменения в элементы блока profile с помощью применения Javascript;
+* Валидация форм с помощью Javascript;
 
 Проект размещён на github-pages - [ссылка](https://leskezz.github.io/mesto/index.html).
 ------ 
