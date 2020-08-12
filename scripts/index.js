@@ -1,5 +1,5 @@
 import {Card} from './Card.js';
-import {initialCards} from './utils.js';
+import {initialCards, openPopup, popupCardFullSize} from './utils.js';
 import {FormValidator} from './FormValidator.js'
 
 const content = document.querySelector('.content');
@@ -9,7 +9,6 @@ const popupEditProfile = content.querySelector('.popup_btn_edit-profile');
 const popupAddCard = content.querySelector('.popup_btn_add-element');
 const closeButtonPopupEditProfile = popupEditProfile.querySelector('.popup__close-button');
 const closeButtonPopupAddCard = popupAddCard.querySelector('.popup__close-button');
-export const popupCardFullSize = content.querySelector('.popup_btn_card-image');
 const closeButtonPopupCardFullSize = popupCardFullSize.querySelector('.popup__close-button');
 const cardsListElement = content.querySelector('.elements__grid');
 const emptyElement = content.querySelector('.element_empty');
@@ -19,8 +18,6 @@ const inputName = popupEditProfile.querySelector('.popup__item_el_name');
 const inputProfession = popupEditProfile.querySelector('.popup__item_el_profession');
 const inputPlace = popupAddCard.querySelector('.popup__item_el_place');
 const inputLink = popupAddCard.querySelector('.popup__item_el_link');
-export const popupCardImage = popupCardFullSize.querySelector('.card-full-size__image');
-export const popupCardHeading = popupCardFullSize.querySelector('.card-full-size__heading');
 const formList = document.querySelectorAll('.popup__form');
 
 const myConfig = {
@@ -54,7 +51,7 @@ function clearForm(popup) {
           };
     };
 };
-
+/*
 export function openPopup(popup) {
 
     popup.classList.add('popup_opened');
@@ -66,7 +63,7 @@ export function openPopup(popup) {
 
     addOverlayListeners(popup);
     clearForm(popup);
-};
+}; */
 
 function closePopup(popup) {
     popup.classList.remove('popup_opened');

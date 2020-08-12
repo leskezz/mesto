@@ -1,3 +1,7 @@
+export const popupCardFullSize = document.querySelector('.popup_btn_card-image');
+export const popupCardImage = popupCardFullSize.querySelector('.card-full-size__image');
+export const popupCardHeading = popupCardFullSize.querySelector('.card-full-size__heading');
+
 export const initialCards = [
     {
         name: 'Архыз',
@@ -24,3 +28,16 @@ export const initialCards = [
         link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
     }
 ];
+
+export function openPopup(popup) {
+
+    popup.classList.add('popup_opened');
+
+    inputName.value = profileName.textContent;
+    inputProfession.value = profileProfession.textContent;
+    inputPlace.value = '';
+    inputLink.value = '';
+
+    addOverlayListeners(popup);
+    clearForm(popup);
+};
