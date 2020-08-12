@@ -1,5 +1,5 @@
 import {Card} from './Card.js';
-import {initialCards, openPopup, popupCardFullSize} from './utils.js';
+import {initialCards, openPopup, popupCardFullSize, closePopup, addOverlayListeners} from './utils.js';
 import {FormValidator} from './FormValidator.js'
 
 const content = document.querySelector('.content');
@@ -28,26 +28,6 @@ const myConfig = {
     inputErrorClass: 'popup__item_type_error',
     errorClass: 'popup__input-error_active'
   };
-
-
-/*
-export function openPopup(popup) {
-
-    popup.classList.add('popup_opened');
-
-    inputName.value = profileName.textContent;
-    inputProfession.value = profileProfession.textContent;
-    inputPlace.value = '';
-    inputLink.value = '';
-
-    addOverlayListeners(popup);
-    clearForm(popup);
-}; */
-
-function closePopup(popup) {
-    popup.classList.remove('popup_opened');
-    removeOverlayListeners(popup);
-};
 
 function formEditProfileSubmitHandler (evt) {
     
@@ -81,29 +61,6 @@ function formAddCardSubmitHandler (evt) {
     closePopup(popupAddCard);
 };
 
-function closePopupOnOverlay (evt) {
-    const overlay = evt.target;
-    if (overlay.classList.contains('popup')) {
-        closePopup(overlay);
-    }
-};
-
-function closePopupOnEscape (evt) {
-    if (evt.key === 'Escape') {
-        closePopup(document.querySelector('.popup_opened'));
-    } 
-};
-
-function addOverlayListeners (popup) {
-        popup.addEventListener('click', closePopupOnOverlay);
-        window.addEventListener('keydown', closePopupOnEscape);
-};
-
-function removeOverlayListeners (popup) {
-        popup.removeEventListener('click', closePopupOnOverlay);
-        window.removeEventListener('keydown', closePopupOnEscape);
-};
-
 const profileFormValidator = new FormValidator (myConfig, profileForm);
 profileFormValidator.enableValidation();
 
@@ -115,6 +72,8 @@ editButton.addEventListener('click', () => {
     openPopup(popupEditProfile);
     profileFormValidator.clearForm();
     addOverlayListeners(popupEditProfile);
+    inputName.value = profileName.textContent;
+    inputProfession.value = profileProfession.textContent;
 });
 closeButtonPopupEditProfile.addEventListener('click', () => { closePopup(popupEditProfile);});
 closeButtonPopupAddCard.addEventListener('click', () => { closePopup(popupAddCard);});
@@ -122,6 +81,8 @@ addCardButton.addEventListener('click', () => {
     openPopup(popupAddCard);
     addCardFormValidator.clearForm();
     addOverlayListeners(popupAddCard);
+    inputPlace.value = '';
+    inputLink.value = '';
 });
 popupAddCard.addEventListener('submit', formAddCardSubmitHandler);
 closeButtonPopupCardFullSize.addEventListener('click', () => { closePopup(popupCardFullSize); });

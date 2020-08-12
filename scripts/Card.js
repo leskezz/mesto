@@ -1,4 +1,4 @@
-import {popupCardImage, popupCardHeading, openPopup, popupCardFullSize} from './utils.js';
+import {popupCardImage, popupCardHeading, openPopup, popupCardFullSize, addOverlayListeners} from './utils.js';
 
 export class Card {
     constructor(cardData, cardSelector) {
@@ -39,6 +39,7 @@ export class Card {
         const heading = card.querySelector('.element__heading');
         popupCardHeading.textContent = heading.textContent;
         openPopup(popupCardFullSize);
+        addOverlayListeners(popupCardFullSize);
     };
 
     generateCard() {

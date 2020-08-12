@@ -32,3 +32,31 @@ export const initialCards = [
 export function openPopup(popup) {
     popup.classList.add('popup_opened');
 };
+
+export function closePopup(popup) {
+    popup.classList.remove('popup_opened');
+    removeOverlayListeners(popup);
+};
+
+function closePopupOnOverlay (evt) {
+    const overlay = evt.target;
+    if (overlay.classList.contains('popup')) {
+        closePopup(overlay);
+    }
+};
+
+function closePopupOnEscape (evt) {
+    if (evt.key === 'Escape') {
+        closePopup(document.querySelector('.popup_opened'));
+    } 
+};
+
+export function addOverlayListeners (popup) {
+        popup.addEventListener('click', closePopupOnOverlay);
+        window.addEventListener('keydown', closePopupOnEscape);
+};
+
+function removeOverlayListeners (popup) {
+        popup.removeEventListener('click', closePopupOnOverlay);
+        window.removeEventListener('keydown', closePopupOnEscape);
+};
