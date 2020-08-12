@@ -66,5 +66,13 @@ export class FormValidator {
     });
     this._setEventListeners();
   };
+
+  clearForm() {
+        this._inputList.forEach((inputElement) => {
+          this._hideInputError(inputElement);
+        });
+        this._toggleButtonState();
+};
+
 };
   

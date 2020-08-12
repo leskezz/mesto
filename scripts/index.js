@@ -18,7 +18,8 @@ const inputName = popupEditProfile.querySelector('.popup__item_el_name');
 const inputProfession = popupEditProfile.querySelector('.popup__item_el_profession');
 const inputPlace = popupAddCard.querySelector('.popup__item_el_place');
 const inputLink = popupAddCard.querySelector('.popup__item_el_link');
-const formList = document.querySelectorAll('.popup__form');
+const profileForm = document.forms.formEditProfile;
+const addCardForm = document.forms.formAddElement;
 
 const myConfig = {
     inputSelector: '.popup__item',
@@ -28,29 +29,7 @@ const myConfig = {
     errorClass: 'popup__input-error_active'
   };
 
-function clearForm(popup) {
-    if (!popup.classList.contains('popup_btn_card-image')) {
-        const inputList = Array.from(popup.querySelectorAll(myConfig.inputSelector));
-        const buttonElement = popup.querySelector(myConfig.submitButtonSelector);
-        const formElement = popup.querySelector('.popup__form');
-        inputList.forEach((inputElement) => {
-            const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
-            inputElement.classList.remove(myConfig.inputErrorClass);
-            errorElement.classList.remove(myConfig.errorClass);
-            errorElement.textContent = '';
-        });
-        const hasInvalidInput = inputList.some((inputElement) => {
-            return !inputElement.validity.valid;
-        });
-        if (hasInvalidInput) {
-            buttonElement.classList.add(myConfig.inactiveButtonClass);
-            buttonElement.disabled = true;
-          } else {
-            buttonElement.classList.remove(myConfig.inactiveButtonClass);
-            buttonElement.disabled = false;
-          };
-    };
-};
+
 /*
 export function openPopup(popup) {
 
@@ -125,15 +104,24 @@ function removeOverlayListeners (popup) {
         window.removeEventListener('keydown', closePopupOnEscape);
 };
 
-formList.forEach ((formElement) => {
-    const formValidate = new FormValidator (myConfig, formElement);
-    formValidate.enableValidation();
-  })
+const profileFormValidator = new FormValidator (myConfig, profileForm);
+profileFormValidator.enableValidation();
+
+const addCardFormValidator = new FormValidator (myConfig, addCardForm);
+addCardFormValidator.enableValidation();
 
 popupEditProfile.addEventListener('submit', formEditProfileSubmitHandler);
-editButton.addEventListener('click', () => { openPopup(popupEditProfile);});
+editButton.addEventListener('click', () => { 
+    openPopup(popupEditProfile);
+    profileFormValidator.clearForm();
+    addOverlayListeners(popupEditProfile);
+});
 closeButtonPopupEditProfile.addEventListener('click', () => { closePopup(popupEditProfile);});
 closeButtonPopupAddCard.addEventListener('click', () => { closePopup(popupAddCard);});
-addCardButton.addEventListener('click', () => { openPopup(popupAddCard);});
+addCardButton.addEventListener('click', () => { 
+    openPopup(popupAddCard);
+    addCardFormValidator.clearForm();
+    addOverlayListeners(popupAddCard);
+});
 popupAddCard.addEventListener('submit', formAddCardSubmitHandler);
 closeButtonPopupCardFullSize.addEventListener('click', () => { closePopup(popupCardFullSize); });

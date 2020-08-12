@@ -30,14 +30,5 @@ export const initialCards = [
 ];
 
 export function openPopup(popup) {
-
     popup.classList.add('popup_opened');
-
-    inputName.value = profileName.textContent;
-    inputProfession.value = profileProfession.textContent;
-    inputPlace.value = '';
-    inputLink.value = '';
-
-    addOverlayListeners(popup);
-    clearForm(popup);
 };
