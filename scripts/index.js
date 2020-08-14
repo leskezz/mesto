@@ -1,5 +1,5 @@
 import {Card} from './Card.js';
-import {initialCards, openPopup, popupCardFullSize, closePopup, addOverlayListeners} from './utils.js';
+import {initialCards, openPopup, popupCardFullSize, closePopup} from './utils.js';
 import {FormValidator} from './FormValidator.js'
 
 const content = document.querySelector('.content');
@@ -71,7 +71,6 @@ popupEditProfile.addEventListener('submit', formEditProfileSubmitHandler);
 editButton.addEventListener('click', () => { 
     openPopup(popupEditProfile);
     profileFormValidator.clearForm();
-    addOverlayListeners(popupEditProfile);
     inputName.value = profileName.textContent;
     inputProfession.value = profileProfession.textContent;
 });
@@ -80,7 +79,6 @@ closeButtonPopupAddCard.addEventListener('click', () => { closePopup(popupAddCar
 addCardButton.addEventListener('click', () => { 
     openPopup(popupAddCard);
     addCardFormValidator.clearForm();
-    addOverlayListeners(popupAddCard);
     inputPlace.value = '';
     inputLink.value = '';
 });

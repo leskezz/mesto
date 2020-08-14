@@ -31,6 +31,7 @@ export const initialCards = [
 
 export function openPopup(popup) {
     popup.classList.add('popup_opened');
+    addOverlayListeners(popup);
 };
 
 export function closePopup(popup) {
@@ -51,7 +52,7 @@ function closePopupOnEscape (evt) {
     } 
 };
 
-export function addOverlayListeners (popup) {
+function addOverlayListeners (popup) {
         popup.addEventListener('click', closePopupOnOverlay);
         window.addEventListener('keydown', closePopupOnEscape);
 };
