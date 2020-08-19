@@ -1,6 +1,7 @@
 import {Card} from './Card.js';
 import {initialCards, openPopup, popupCardFullSize, closePopup} from './utils.js';
 import {FormValidator} from './FormValidator.js'
+import Section from './Section.js';
 
 const content = document.querySelector('.content');
 const editButton = content.querySelector('.profile__edit-button');
@@ -38,7 +39,7 @@ function formEditProfileSubmitHandler (evt) {
     
     closePopup(popupEditProfile);
 };
-
+/*
 function addCard(cardData) {
     const card = new Card (cardData, '.element-template');
     const cardElement = card.generateCard();
@@ -49,6 +50,21 @@ function addCard(cardData) {
 initialCards.forEach(cardData => {
     addCard(cardData);
 });
+ */
+
+const cardsList = new Section ({
+        items: initialCards,
+        renderer: (item) => {
+            const card = new Card (item, '.element-template');
+            const cardElement = card.generateCard();
+            emptyElement.remove();
+            cardsList.addItem (cardElement);
+        }
+    },
+    '.elements__grid'
+)
+
+cardsList.renderItems();
 
 function formAddCardSubmitHandler (evt) {
     evt.preventDefault();
@@ -57,7 +73,20 @@ function formAddCardSubmitHandler (evt) {
     newCard.link = inputLink.value;
     inputPlace.value = '';
     inputLink.value = '';
-    addCard(newCard);
+    
+    const newCardsList = new Section ({
+        items: newCard,
+        renderer: (item) => {
+            const card = new Card (item, '.element-template');
+            const cardElement = card.generateCard();
+            cardsList.addItem (cardElement);
+        }
+    },
+    '.elements__grid'
+    )
+
+    newCardsList.renderItems();
+
     closePopup(popupAddCard);
 };
 

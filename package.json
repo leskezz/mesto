@@ -1,0 +1,19 @@
+{
+  "name": "yandex_praktikum",
+  "version": "0.0.1",
+  "description": "Данный проект был создан для применения на практике базовых принципов Javascript.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leskezz/mesto.git"
+  },
+  "author": "Aleksey Kozlovskiy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/leskezz/mesto/issues"
+  },
+  "homepage": "https://github.com/leskezz/mesto#readme"
+}
