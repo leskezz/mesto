@@ -2,6 +2,7 @@ import {Card} from './Card.js';
 import {initialCards, openPopup, popupCardFullSize, closePopup} from './utils.js';
 import {FormValidator} from './FormValidator.js'
 import Section from './Section.js';
+import Popup from './Popup.js';
 
 const content = document.querySelector('.content');
 const editButton = content.querySelector('.profile__edit-button');
@@ -39,18 +40,6 @@ function formEditProfileSubmitHandler (evt) {
     
     closePopup(popupEditProfile);
 };
-/*
-function addCard(cardData) {
-    const card = new Card (cardData, '.element-template');
-    const cardElement = card.generateCard();
-    emptyElement.remove();
-    cardsListElement.prepend(cardElement);
-};
-
-initialCards.forEach(cardData => {
-    addCard(cardData);
-});
- */
 
 const cardsList = new Section ({
         items: initialCards,
@@ -90,12 +79,19 @@ function formAddCardSubmitHandler (evt) {
     closePopup(popupAddCard);
 };
 
+const popupEditProfileTwo = new Popup ('.popup_btn_edit-profile');
+
+editButton.addEventListener('click', () => {
+    popupEditProfileTwo.open();
+})
+
 const profileFormValidator = new FormValidator (myConfig, profileForm);
 profileFormValidator.enableValidation();
 
 const addCardFormValidator = new FormValidator (myConfig, addCardForm);
 addCardFormValidator.enableValidation();
 
+/*
 popupEditProfile.addEventListener('submit', formEditProfileSubmitHandler);
 editButton.addEventListener('click', () => { 
     openPopup(popupEditProfile);
@@ -103,7 +99,9 @@ editButton.addEventListener('click', () => {
     inputName.value = profileName.textContent;
     inputProfession.value = profileProfession.textContent;
 });
-closeButtonPopupEditProfile.addEventListener('click', () => { closePopup(popupEditProfile);});
+*/
+
+// closeButtonPopupEditProfile.addEventListener('click', () => { closePopup(popupEditProfile);});
 closeButtonPopupAddCard.addEventListener('click', () => { closePopup(popupAddCard);});
 addCardButton.addEventListener('click', () => { 
     openPopup(popupAddCard);
