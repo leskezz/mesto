@@ -1,8 +1,9 @@
 import {Card} from './Card.js';
-import {initialCards, openPopup, popupCardFullSize, closePopup} from './utils.js';
+import {initialCards} from './utils.js';
 import {FormValidator} from './FormValidator.js'
 import Section from './Section.js';
 import Popup from './Popup.js';
+import PopupWithImage from './PopupWithImage.js';
 
 const content = document.querySelector('.content');
 const editButton = content.querySelector('.profile__edit-button');
@@ -11,7 +12,6 @@ const popupEditProfile = content.querySelector('.popup_btn_edit-profile');
 const popupAddCard = content.querySelector('.popup_btn_add-element');
 const closeButtonPopupEditProfile = popupEditProfile.querySelector('.popup__close-button');
 const closeButtonPopupAddCard = popupAddCard.querySelector('.popup__close-button');
-const closeButtonPopupCardFullSize = popupCardFullSize.querySelector('.popup__close-button');
 const cardsListElement = content.querySelector('.elements__grid');
 const emptyElement = content.querySelector('.element_empty');
 const profileName = content.querySelector('.profile__name');
@@ -41,10 +41,18 @@ function formEditProfileSubmitHandler (evt) {
     closePopup(popupEditProfile);
 };
 
+const popupFullSizeCard = new PopupWithImage ('.popup_btn_card-image');
+
 const cardsList = new Section ({
         items: initialCards,
         renderer: (item) => {
-            const card = new Card (item, '.element-template');
+            const card = new Card (
+                item, 
+                '.element-template', 
+                () => {
+                    popupFullSizeCard.open(item);
+                }
+            );
             const cardElement = card.generateCard();
             emptyElement.remove();
             cardsList.addItem (cardElement);
@@ -66,7 +74,7 @@ function formAddCardSubmitHandler (evt) {
     const newCardsList = new Section ({
         items: newCard,
         renderer: (item) => {
-            const card = new Card (item, '.element-template');
+            const card = new Card (item, '.element-template', popupFullSizeCard.open());
             const cardElement = card.generateCard();
             cardsList.addItem (cardElement);
         }
@@ -110,4 +118,3 @@ addCardButton.addEventListener('click', () => {
     inputLink.value = '';
 });
 popupAddCard.addEventListener('submit', formAddCardSubmitHandler);
-closeButtonPopupCardFullSize.addEventListener('click', () => { closePopup(popupCardFullSize); });
