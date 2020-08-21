@@ -1,6 +1,6 @@
 export class Card {
     constructor(cardData, cardSelector, handleCardClick) {
-        this._cardName = cardData.name;
+        this._cardName = cardData.place;
         this._cardLink = cardData.link;
         this._cardSelector = cardSelector;
         this._handleCardClick = handleCardClick;
@@ -29,9 +29,11 @@ export class Card {
     };
 
     _handleFullSize(evt) {
+        const element = evt.target.closest('.element');
+        const elementHeading = element.querySelector('.element__heading');
         const data = {};
         data.link = evt.target.src;
-        data.name = evt.target.alt;
+        data.place = elementHeading.textContent;
         this._handleCardClick(data);
     };
     
