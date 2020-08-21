@@ -19,8 +19,8 @@ export default class PopupWithForm extends Popup {
         super.setEventListeners();
         this._formSubmitHandler = (evt) => {
             evt.preventDefault();
-            const newCard = this._getInputValues();
-            this._handleFormSubmit(newCard);
+            const item = this._getInputValues();
+            this._handleFormSubmit(item);
             this.close();
         }
         this._popup.addEventListener('submit', this._formSubmitHandler)
@@ -28,7 +28,13 @@ export default class PopupWithForm extends Popup {
 
     close () {
         super.close();
-        this._inputList.forEach((input) => input.value = '');
+        this._inputList.forEach((input) => {
+            if (input.name === 'place'){
+                input.value = '';
+            } else if (input.name === 'link') {
+                input.value = '';
+            }
+        })
     }
 
     _deleteEventListeners () {
