@@ -4,7 +4,7 @@
   "description": "Данный проект был создан для применения на практике базовых принципов Javascript.",
   "main": "index.js",
   "scripts": {
-    "build": "rm -rf dist && webpack",
+    "build": "rimraf -rf dist && webpack",
     "dev": "webpack-dev-server --open --watch"
   },
   "repository": {
@@ -32,10 +32,10 @@
     "postcss-loader": "^3.0.0",
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12",
-    "webpack-dev-server": "^3.11.0"
+    "webpack-dev-server": "^3.11.0",
+    "style-loader": "^1.2.1"
   },
   "dependencies": {
-    "core-js": "^3.6.5",
-    "style-loader": "^1.2.1"
+    "core-js": "^3.6.5"
   }
 }
