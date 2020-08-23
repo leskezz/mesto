@@ -25,11 +25,15 @@ export class Card {
     
     _handleDelete (evt) {
         const card = evt.target.closest('.element');
+        // не понимаю, как я могу найти карточку не по событию, а this._element ? Хотел бы с этим разобраться.
+
         card.remove();
     };
 
     _handleFullSize(evt) {
         const element = evt.target.closest('.element');
+        // не понимаю, как я могу найти карточку не по событию, а this._element ? Хотел бы с этим разобраться.
+        
         const elementHeading = element.querySelector('.element__heading');
         const data = {};
         data.link = evt.target.src;

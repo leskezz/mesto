@@ -28,13 +28,7 @@ export default class PopupWithForm extends Popup {
 
     close () {
         super.close();
-        this._inputList.forEach((input) => {
-            if (input.name === 'place'){
-                input.value = '';
-            } else if (input.name === 'link') {
-                input.value = '';
-            }
-        })
+        this._popup.querySelector('.popup__form').reset();
     }
 
     _deleteEventListeners () {
