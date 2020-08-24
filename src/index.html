@@ -52,73 +52,6 @@
 
             </section>
 
-            <section class="popup popup_btn_edit-profile">
-
-                <form name ="formEditProfile" class="popup__form" novalidate>
-    
-                    <h3 class="popup__heading">Редактировать профиль</h3>
-                    
-                    <fieldset class="popup__inputs-container">
-                        <label class ="popup__input-container">
-                            <input id="input__name" type="text" class="popup__item popup__item_el_name" placeholder="Ваше имя" name="name" minlength="2" maxlength="40" required>
-                            <span id="input__name-error" class="popup__input-error"></span>
-                        </label>
-                        <label class ="popup__input-container">
-                            <input id="input__profession" type="text" class="popup__item popup__item_el_profession" placeholder="Ваш род занятий" name="profession" minlength="2" maxlength="200" required>
-                            <span id="input__profession-error" class="popup__input-error"></span>
-                        </label>
-                    </fieldset>
-    
-                    <button type="submit" class="popup__save-button">Сохранить</button>
-                    
-                    <button type="button" class="popup__close-button">
-                        <img src="./images/Add-button__plus.svg" class="popup__close-image" alt="Закрыть">
-                    </button>
-    
-                </form>
-    
-            </section>
-
-            <section class="popup popup_btn_add-element">
-
-                <form name ="formAddElement" class="popup__form" novalidate>
-    
-                    <h3 class="popup__heading">Новое место</h3>
-                    
-                    <fieldset class="popup__inputs-container">
-                        <label class ="popup__input-container">
-                            <input id="input__place" type="text" class="popup__item popup__item_el_place" placeholder="Название" name="place" minlength="1" maxlength="30" required>
-                            <span id="input__place-error" class="popup__input-error"></span>
-                        </label>
-                        <label class ="popup__input-container">
-                            <input id="input__link" type="url" class="popup__item popup__item_el_link" placeholder="Ссылка на картинку" name="link" required>
-                            <span id="input__link-error" class="popup__input-error"></span>
-                        </label>
-                    </fieldset>
-    
-                    <button type="submit" class="popup__save-button">Создать</button>
-                    
-                    <button type="button" class="popup__close-button">
-                        <img src="./images/Add-button__plus.svg" class="popup__close-image" alt="Закрыть">
-                    </button>
-    
-                </form>
-    
-            </section>
-
-            <section class="popup popup_btn_card-image">
-
-                <div class='card-full-size'>
-                    <img class='card-full-size__image' src='#' alt=''>
-                    <h3 class='card-full-size__heading'>
-                    </h3>
-                    <button type="button" class="popup__close-button">
-                        <img src="./images/Add-button__plus.svg" class="popup__close-image" alt="Закрыть">
-                    </button>
-                </div>
-    
-            </section>
-
         </main>
 
 
@@ -129,6 +62,73 @@
         </footer>
 
     </div>
+
+    <section class="popup popup_btn_edit-profile">
+
+        <form name ="formEditProfile" class="popup__form" novalidate>
+
+            <h3 class="popup__heading">Редактировать профиль</h3>
+            
+            <fieldset class="popup__inputs-container">
+                <label class ="popup__input-container">
+                    <input id="input__name" type="text" class="popup__item popup__item_el_name" placeholder="Ваше имя" name="name" minlength="2" maxlength="40" required>
+                    <span id="input__name-error" class="popup__input-error"></span>
+                </label>
+                <label class ="popup__input-container">
+                    <input id="input__profession" type="text" class="popup__item popup__item_el_profession" placeholder="Ваш род занятий" name="profession" minlength="2" maxlength="200" required>
+                    <span id="input__profession-error" class="popup__input-error"></span>
+                </label>
+            </fieldset>
+
+            <button type="submit" class="popup__save-button">Сохранить</button>
+            
+            <button type="button" class="popup__close-button">
+                <img src="./images/Add-button__plus.svg" class="popup__close-image" alt="Закрыть">
+            </button>
+
+        </form>
+
+    </section>
+
+    <section class="popup popup_btn_add-element">
+
+        <form name ="formAddElement" class="popup__form" novalidate>
+
+            <h3 class="popup__heading">Новое место</h3>
+            
+            <fieldset class="popup__inputs-container">
+                <label class ="popup__input-container">
+                    <input id="input__place" type="text" class="popup__item popup__item_el_place" placeholder="Название" name="place" minlength="1" maxlength="30" required>
+                    <span id="input__place-error" class="popup__input-error"></span>
+                </label>
+                <label class ="popup__input-container">
+                    <input id="input__link" type="url" class="popup__item popup__item_el_link" placeholder="Ссылка на картинку" name="link" required>
+                    <span id="input__link-error" class="popup__input-error"></span>
+                </label>
+            </fieldset>
+
+            <button type="submit" class="popup__save-button">Создать</button>
+            
+            <button type="button" class="popup__close-button">
+                <img src="./images/Add-button__plus.svg" class="popup__close-image" alt="Закрыть">
+            </button>
+
+        </form>
+
+    </section>
+
+    <section class="popup popup_btn_card-image">
+
+        <div class='card-full-size'>
+            <img class='card-full-size__image' src='#' alt=''>
+            <h3 class='card-full-size__heading'>
+            </h3>
+            <button type="button" class="popup__close-button">
+                <img src="./images/Add-button__plus.svg" class="popup__close-image" alt="Закрыть">
+            </button>
+        </div>
+
+    </section>
 
 <template class='element-template'>
     <li class="element">
