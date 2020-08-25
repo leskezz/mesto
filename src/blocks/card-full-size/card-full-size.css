@@ -4,4 +4,7 @@
 .card-full-size {
     position: relative;
     line-height: 0;
+    font-family: 'Inter', ‘Arial’, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    text-size-adjust: 100%;
 }
