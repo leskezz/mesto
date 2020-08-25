@@ -21,18 +21,22 @@ const popupEditProfile = new PopupWithForm (
         userInfo.setUserInfo(item);
     });
 
+const createCard = (newElement) => {
+    const newCard = new Card (
+        newElement, 
+        '.element-template', 
+        (item) => {
+            popupFullSizeCard.open(item);
+            }
+        );
+        const cardElement = newCard.generateCard();
+        cardsList.addItem (cardElement);
+}
+
 const popupAddCard = new PopupWithForm (
     '.popup_btn_add-element',
     (newElement) => {
-            const newCard = new Card (
-                newElement, 
-                '.element-template', 
-                (item) => {
-                    popupFullSizeCard.open(item);
-                    }
-                );
-                const cardElement = newCard.generateCard();
-                cardsList.addItem (cardElement);
+        createCard(newElement)
             }
     );
 
@@ -44,17 +48,9 @@ addCardFormValidator.enableValidation();
 
 const cardsList = new Section ({
     items: initialCards,
-    renderer: (item) => {
-        const card = new Card (
-            item, 
-            '.element-template', 
-            () => {
-                popupFullSizeCard.open(item);
-            }
-        );
-        const cardElement = card.generateCard();
+    renderer: (newElement) => {
+        createCard(newElement);
         emptyElement.remove();
-        cardsList.addItem (cardElement);
     }
 },
 '.elements__grid'
