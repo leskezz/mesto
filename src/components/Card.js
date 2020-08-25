@@ -7,52 +7,36 @@ export class Card {
     };
 
     _getTemplate() {
-        const cardElement = document.querySelector(this._cardSelector).content.cloneNode(true);
+        const cardElement = document.querySelector(this._cardSelector).content.querySelector('.element').cloneNode(true);
         return cardElement;
     }
 
     _addCardListeners() {
-        this._element.querySelector('.element__delete-button').addEventListener('click', (evt) => {
-            this._handleDelete(evt);
-        });
-        this._element.querySelector('.element__like-button').addEventListener('click', (evt) => {
-            this._handleLike(evt);
-        });
-        this._element.querySelector('.element__image').addEventListener('click', (evt) => {
-            this._handleFullSize(evt)
-        });
-    };
-    
-    _handleDelete (evt) {
-        const card = evt.target.closest('.element');
-        // не понимаю, как я могу найти карточку не по событию, а this._element ? Хотел бы с этим разобраться.
+        this._elementImage = this._element.querySelector('.element__image');
+        this._elementHeading = this._element.querySelector('.element__heading');
+        this._likeButton = this._element.querySelector('.element__like-button');
+        this._deleteButton = this._element.querySelector('.element__delete-button')
 
-        card.remove();
+        this._deleteButton.addEventListener('click', () => this._element.remove());
+        this._likeButton.addEventListener('click', () => this._likeButton.classList.toggle('element__like-button_active'));
+        this._elementImage.addEventListener('click', () => this._handleFullSize());
     };
 
-    _handleFullSize(evt) {
-        const element = evt.target.closest('.element');
-        // не понимаю, как я могу найти карточку не по событию, а this._element ? Хотел бы с этим разобраться.
-        
-        const elementHeading = element.querySelector('.element__heading');
+    _handleFullSize() {
         const data = {};
-        data.link = evt.target.src;
-        data.place = elementHeading.textContent;
+        data.link = this._elementImage.src;
+        data.place = this._elementHeading.textContent;
         this._handleCardClick(data);
-    };
-    
-    _handleLike (evt) {
-        evt.target.classList.toggle('element__like-button_active');
     };
 
     generateCard() {
         this._element = this._getTemplate();
         this._addCardListeners();
 
-        this._element.querySelector('.element__heading').textContent = this._cardName;
-        const cardImage = this._element.querySelector('.element__image');
-        cardImage.src = this._cardLink;
-        cardImage.alt = this._cardName;
+        this._elementHeading.textContent = this._cardName;
+
+        this._elementImage.src = this._cardLink;
+        this._elementImage.alt = this._cardName;
 
         return this._element;
     }
