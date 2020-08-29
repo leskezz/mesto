@@ -2,6 +2,7 @@ export class Card {
     constructor(cardData, cardSelector, handleCardClick) {
         this._cardName = cardData.name;
         this._cardLink = cardData.link;
+        this._likes = cardData.likes.length;
         this._cardSelector = cardSelector;
         this._handleCardClick = handleCardClick;
     };
@@ -33,11 +34,13 @@ export class Card {
         this._element = this._getTemplate();
         this._addCardListeners();
 
+        this._elementLikes = this._element.querySelector('.element__like-countj');
+        
         this._elementHeading.textContent = this._cardName;
-
         this._elementImage.src = this._cardLink;
         this._elementImage.alt = this._cardName;
-
+        this._elementLikes.textContent = this._likes;
+        
         return this._element;
     }
 }

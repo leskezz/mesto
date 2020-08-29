@@ -133,14 +133,16 @@
 <template class='element-template'>
     <li class="element">
         <img src='#' alt='' class="element__image">
-        <button type='button' class='element__delete-button'>
+        <button type="button" class="element__delete-button">
             <img src="./images/Delete-button.svg" class='element__delete-image' alt="Удалить">
         </button>
         <div class="element__info">
             <h3 class="element__heading">
             </h3>
-            <button type="button" class="element__like-button">
-            </button>
+            <div class="element__like-container">
+                <button type="button" class="element__like-button"></button>
+                <p class="element__like-count"></p>
+            </div>
         </div>
     </li>
 </template>
