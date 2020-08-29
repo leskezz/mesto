@@ -7,6 +7,7 @@ import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
 import {editButton, addCardButton, emptyElement, profileForm, addCardForm, myConfig, inputName, inputProfession} from '../components/constants.js';
 import Api from '../components/Api.js';
+import PopupWithConfirm from '../components/PopupWithConfirm.js';
 
 const userInfo = new UserInfo (
     '.profile__name',
@@ -31,7 +32,10 @@ const createCard = (newElement) => {
         '.element-template', 
         (item) => {
             popupFullSizeCard.open(item);
-            }
+            },
+        () => {
+            popupDeleteCard.open();
+        }
         );
         const cardElement = newCard.generateCard();
         cardsList.addItem (cardElement);
@@ -47,6 +51,13 @@ const popupAddCard = new PopupWithForm (
             .catch (err => console.log(err))
             }
     );
+
+const popupDeleteCard = new PopupWithConfirm (
+    '.popup_btn_delete-element',
+    () => {
+
+    }
+)
 
 const profileFormValidator = new FormValidator (myConfig, profileForm);
 profileFormValidator.enableValidation();

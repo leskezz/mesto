@@ -10,6 +10,7 @@
 @import url(./_btn/popup_btn_add-element.css);
 @import url(./_btn/popup_btn_card-image.css);
 @import url(./_btn/popup_btn_edit-profile.css);
+@import url(./_btn/popup_btn_delete-element.css);
 @import url(./__input-error/popup__input-error.css);
 @import url(./__input-error/_active/popup__input-error_active.css);
 @import url(./__save-button/_inactive/popup__save-button_inactive.css);
