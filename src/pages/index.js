@@ -1,16 +1,17 @@
 import './index.css';
 import {Card} from '../components/Card.js';
-import {initialCards} from '../components/utils.js';
 import {FormValidator} from '../components/FormValidator.js'
 import Section from '../components/Section.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
-import {editButton, addCardButton, emptyElement, profileForm, addCardForm, myConfig, inputName, inputProfession, avatar} from '../components/constants.js';
+import {editButton, addCardButton, emptyElement, profileForm, addCardForm, myConfig, inputName, inputProfession} from '../components/constants.js';
+import Api from '../components/Api.js';
 
 const userInfo = new UserInfo (
     '.profile__name',
-    '.profile__profession'
+    '.profile__profession',
+    '.profile__photo'
 );
 
 const popupFullSizeCard = new PopupWithImage ('.popup_btn_card-image');
@@ -47,7 +48,7 @@ const addCardFormValidator = new FormValidator (myConfig, addCardForm);
 addCardFormValidator.enableValidation();
 
 const cardsList = new Section ({
-    items: initialCards,
+    items: [],
     renderer: (newElement) => {
         createCard(newElement);
         emptyElement.remove();
@@ -57,6 +58,20 @@ const cardsList = new Section ({
 )
 
 cardsList.renderItems();
+
+function createCardList (initialCards) {
+    const cardsList = new Section ({
+        items: initialCards,
+        renderer: (newElement) => {
+            createCard(newElement);
+            emptyElement.remove();
+        }
+    },
+    '.elements__grid'
+    )
+    
+    cardsList.renderItems();
+}
 
 addCardButton.addEventListener('click', () => { 
     popupAddCard.open();
@@ -71,17 +86,26 @@ editButton.addEventListener('click', () => {
     profileFormValidator.clearForm();
 })
 
-fetch('https://mesto.nomoreparties.co/v1/cohort-14/users/me', {
+const api = new Api ({
+    baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-14',
     headers: {
         authorization: 'b9ca3f7b-fe22-468a-8861-4b4eef5a6009'
-    }
+    },
 })
-    .then(res => res.json())
-    .then((data) => {
-        console.log(data); // НЕ ЗАБУДЬ УБРАТЬ
+
+api.getUserData('/users/me')
+    .then ((data) => {
         const user = {};
         user.name = data.name;
         user.profession = data.about;
         userInfo.setUserInfo(user);
-        avatar.src = data.avatar;
+        userInfo.setAvatar(user);
     })
+    .catch(err => console.log(err)) 
+
+api.getInitialCards('/cards')
+    .then (data => createCardList(data))
+    .catch(err => console.log(err))
+
+
+
