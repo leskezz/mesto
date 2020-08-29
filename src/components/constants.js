@@ -5,6 +5,7 @@ const profileForm = document.forms.formEditProfile;
 const addCardForm = document.forms.formAddElement;
 const inputName = document.querySelector('.popup__item_el_name');
 const inputProfession = document.querySelector('.popup__item_el_profession');
+const avatar = document.querySelector('.profile__photo');
 
 const myConfig = {
     inputSelector: '.popup__item',
@@ -14,4 +15,4 @@ const myConfig = {
     errorClass: 'popup__input-error_active'
 };
 
-export {editButton, addCardButton, emptyElement, profileForm, addCardForm, myConfig, inputName, inputProfession};
+export {editButton, addCardButton, emptyElement, profileForm, addCardForm, myConfig, inputName, inputProfession, avatar};
