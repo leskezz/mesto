@@ -20,6 +20,9 @@ const popupEditProfile = new PopupWithForm (
     '.popup_btn_edit-profile',
     (item) => {
         userInfo.setUserInfo(item);
+        api.patchProfile('/users/me', item)
+            .then (data => console.log(data))
+            .catch (err => console.log(err))
     });
 
 const createCard = (newElement) => {
@@ -37,7 +40,11 @@ const createCard = (newElement) => {
 const popupAddCard = new PopupWithForm (
     '.popup_btn_add-element',
     (newElement) => {
-        createCard(newElement)
+        createCard(newElement);
+        console.log(newElement);
+        api.postNewCard('/cards', newElement)
+            .then (data => console.log(data))
+            .catch (err => console.log(err))
             }
     );
 
@@ -89,7 +96,8 @@ editButton.addEventListener('click', () => {
 const api = new Api ({
     baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-14',
     headers: {
-        authorization: 'b9ca3f7b-fe22-468a-8861-4b4eef5a6009'
+        authorization: 'b9ca3f7b-fe22-468a-8861-4b4eef5a6009',
+        'Content-Type': 'application/json'
     },
 })
 
