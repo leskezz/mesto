@@ -34,7 +34,7 @@ export class Card {
         this._element = this._getTemplate();
         this._addCardListeners();
 
-        this._elementLikes = this._element.querySelector('.element__like-countj');
+        this._elementLikes = this._element.querySelector('.element__like-count');
         
         this._elementHeading.textContent = this._cardName;
         this._elementImage.src = this._cardLink;
