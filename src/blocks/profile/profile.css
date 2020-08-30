@@ -8,6 +8,7 @@
 @import url(./__edit-image/profile__edit-image.css);
 @import url(./__add-button/profile__add-button.css);
 @import url(./__add-image/profile__add-image.css);
+@import url(./__photo-edit/profile__photo-edit.css);
 
 .profile {
     padding-top: 40px;

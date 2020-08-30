@@ -35,7 +35,7 @@ export default class Api {
             headers: this._headers, 
             body: JSON.stringify({
                 name: newData.name,
-                about: newData.profession
+                about: newData.about
             })
     })
                     .then((res) => {
@@ -100,6 +100,22 @@ export default class Api {
             }
             return Promise.reject(`Ошибка: ${res.status}`);
             }) 
+    }
+
+    patchAvatar(avatarUrl, avatar){
+        return fetch(`${this._baseUrl}${avatarUrl}`, {
+            method: 'PATCH',
+            headers: this._headers, 
+            body: JSON.stringify({
+                avatar: avatar
+            })
+    })
+                    .then((res) => {
+                    if (res.ok) {
+                        return res.json();
+                    }
+                    return Promise.reject(`Ошибка: ${res.status}`);
+                    }) 
     }
 
 }

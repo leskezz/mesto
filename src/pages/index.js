@@ -6,7 +6,7 @@ import Section from '../components/Section.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
-import {editButton, addCardButton, emptyElement, profileForm, addCardForm, myConfig, inputName, inputProfession, editAvatarButton} from '../components/constants.js';
+import {editButton, addCardButton, emptyElement, profileForm, addCardForm, myConfig, inputName, inputProfession, editAvatarButton, editAvatarForm} from '../components/constants.js';
 import Api from '../components/Api.js';
 import PopupWithConfirm from '../components/PopupWithConfirm.js';
 
@@ -21,9 +21,10 @@ const popupFullSizeCard = new PopupWithImage ('.popup_btn_card-image');
 const popupEditProfile = new PopupWithForm (
     '.popup_btn_edit-profile',
     (item) => {
-        userInfo.setUserInfo(item);
         api.patchProfile('/users/me', item)
-            .then (data => console.log(data))
+            .then ((data) => {
+                userInfo.setUserInfo(data);
+            })
             .catch (err => console.log(err))
     });
 
@@ -34,8 +35,8 @@ const popupDeleteCard = new PopupWithConfirm (
 const popupEditAvatar = new PopupWithForm (
     '.popup_btn_edit-avatar',
     (newAvatar) => {
-        userInfo.setAvatar(newAvatar);
-        api.patchAvatar('/users/me/avatar', newAvatar)
+        api.patchAvatar('/users/me/avatar', newAvatar.avatar)
+            .then(data => userInfo.setAvatar(data))
             .catch (err => console.log(err));
     }
 )
@@ -48,6 +49,7 @@ const handleLikeClick = (element) => {
                 return item
             }
         })
+        console.log()
         return card
     })
     .then((card) => {
@@ -114,7 +116,6 @@ const popupAddCard = new PopupWithForm (
     (newElement) => {
         api.postNewCard('/cards', newElement)
             .then ((data) => {
-                console.log(data);
                 createCardUser(data);
             })
             .catch (err => console.log(err))
@@ -160,11 +161,8 @@ const api = new Api ({
 
 api.getUserData('/users/me')
     .then ((data) => {
-        const user = {};
-        user.name = data.name;
-        user.profession = data.about;
-        userInfo.setUserInfo(user);
-        userInfo.setAvatar(user);
+        userInfo.setUserInfo(data);
+        userInfo.setAvatar(data);
     })
     .catch(err => console.log(err)) 
 
@@ -187,6 +185,10 @@ editButton.addEventListener('click', () => {
     popupEditProfile.open();
     const user = userInfo.getUserInfo();
     inputName.value = user.name;
-    inputProfession.value = user.profession;
+    inputProfession.value = user.about;
     profileFormValidator.clearForm();
+})
+
+editAvatarButton.addEventListener('click', () => {
+    popupEditAvatar.open();
 })
