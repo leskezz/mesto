@@ -2,8 +2,8 @@ import Card from './Card.js';
 
 export default class CardUser extends Card {
 
-    constructor(cardData, cardSelector, handleCardClick, handleDeleteClick){
-        super(cardData, cardSelector, handleCardClick);
+    constructor({cardData, cardSelector, handleCardClick, handleLikeClick, handleDeleteClick}){
+        super({cardData, cardSelector, handleLikeClick, handleCardClick});
         this._handleDeleteClick = handleDeleteClick;
     }
 

@@ -31,39 +31,70 @@ const popupDeleteCard = new PopupWithConfirm (
     '.popup_btn_delete-element'
 )
 
+const handleLikeClick = (element) => {
+    api.getInitialCards('/cards')
+    .then((data) => {
+        const card = data.find((item) => {
+            if (item._id === element.id){
+                return item
+            }
+        })
+        return card
+    })
+    .then((card) => {
+        let likes = card.likes.length;
+        if (element.querySelector('.element__like-button').classList.contains('element__like-button_active')){
+            likes += 1;
+            element.querySelector('.element__like-count').textContent = likes;
+            api.putLike('/cards/likes', card)
+                .catch (err => console.log(err))
+        } else {
+            likes -= 1;
+            element.querySelector('.element__like-count').textContent = likes;
+            api.deleteLike('/cards/likes', card)
+                .catch (err => console.log(err))
+        }
+    })
+}
+
+const handleDeleteClick = (element) => {
+    popupDeleteCard.open();
+    const deleteHandler = () => {
+        element.remove();
+        api.deleteCard('/cards', element)
+            .then ((data) => {
+                console.log(data);
+//                        popupDeleteCard.removeSubmitHandler();
+            })
+            .catch (err => console.log(err));
+    }
+    popupDeleteCard.setSubmitHandler(deleteHandler)
+}
+
+
 const createCardUser = (newElement) => {
-    const newCard = new CardUser (
-        newElement, 
-        '.element-template', 
-        (item) => {
+    const newCard = new CardUser ({
+        cardData: newElement, 
+        cardSelector: '.element-template', 
+        handleCardClick: (item) => {
             popupFullSizeCard.open(item);
             },
-        (element) => {
-            popupDeleteCard.open();
-            const deleteHandler = () => {
-                element.remove();
-                api.deleteCard('/cards', element)
-                    .then ((data) => {
-                        console.log(data);
-//                        popupDeleteCard.removeSubmitHandler();
-                    })
-                    .catch (err => console.log(err));
-            }
-            popupDeleteCard.setSubmitHandler(deleteHandler)
-        }
-        );
+        handleDeleteClick: handleDeleteClick,
+        handleLikeClick: handleLikeClick
+    });
         const cardElement = newCard.generateCard();
         cardsList.addItem (cardElement);
 }
 
 const createCardServer = (newElement) => {
-    const newCard = new Card (
-        newElement, 
-        '.element-template', 
-        (item) => {
+    const newCard = new Card ({
+        cardData: newElement, 
+        cardSelector: '.element-template', 
+        handleCardClick: (item) => {
             popupFullSizeCard.open(item);
             },
-        );
+        handleLikeClick: handleLikeClick
+    });
         const cardElement = newCard.generateCard();
         cardElement.querySelector('.element__delete-button').remove();
         cardsList.addItem (cardElement);
