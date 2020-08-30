@@ -6,7 +6,7 @@ import Section from '../components/Section.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
-import {editButton, addCardButton, emptyElement, profileForm, addCardForm, myConfig, inputName, inputProfession} from '../components/constants.js';
+import {editButton, addCardButton, emptyElement, profileForm, addCardForm, myConfig, inputName, inputProfession, editAvatarButton} from '../components/constants.js';
 import Api from '../components/Api.js';
 import PopupWithConfirm from '../components/PopupWithConfirm.js';
 
@@ -29,6 +29,15 @@ const popupEditProfile = new PopupWithForm (
 
 const popupDeleteCard = new PopupWithConfirm (
     '.popup_btn_delete-element'
+)
+
+const popupEditAvatar = new PopupWithForm (
+    '.popup_btn_edit-avatar',
+    (newAvatar) => {
+        userInfo.setAvatar(newAvatar);
+        api.patchAvatar('/users/me/avatar', newAvatar)
+            .catch (err => console.log(err));
+    }
 )
 
 const handleLikeClick = (element) => {

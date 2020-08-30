@@ -24,7 +24,9 @@
             <section class="profile">
 
                 <div class="profile__avatar">
-                    <img src="./images/Avatar__image.jpg" class="profile__photo" alt="Фото профиля">
+                    <button type="button" class="profile__photo-edit">
+                        <img src="./images/Avatar__image.jpg" class="profile__photo" alt="Фото профиля">
+                    </button>
                         <div class="profile__info">
                             <div class="profile__heading">
                                 <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -137,6 +139,29 @@
             <h3 class="popup__heading">Вы уверены?</h3>
             <button type="submit" class="popup__save-button">Да</button>
 
+            <button type="button" class="popup__close-button">
+                <img src="./images/Add-button__plus.svg" class="popup__close-image" alt="Закрыть">
+            </button>
+
+        </form>
+
+    </section>
+
+    <section class="popup popup_btn_edit-avatar">
+
+        <form name ="formEditAvatar" class="popup__form" novalidate>
+
+            <h3 class="popup__heading">Обновить аватар</h3>
+            
+            <fieldset class="popup__inputs-container">
+                <label class ="popup__input-container">
+                    <input id="input__link" type="url" class="popup__item popup__item_el_link" placeholder="Ссылка на картинку" name="avatar" required>
+                    <span id="input__link-error" class="popup__input-error"></span>
+                </label>
+            </fieldset>
+
+            <button type="submit" class="popup__save-button">Сохранить</button>
+            
             <button type="button" class="popup__close-button">
                 <img src="./images/Add-button__plus.svg" class="popup__close-image" alt="Закрыть">
             </button>
