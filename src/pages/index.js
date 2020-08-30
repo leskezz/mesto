@@ -176,6 +176,9 @@ profileFormValidator.enableValidation();
 const addCardFormValidator = new FormValidator (myConfig, addCardForm);
 addCardFormValidator.enableValidation();
 
+const editAvatarFormValidator = new FormValidator (myConfig, editAvatarForm);
+editAvatarFormValidator.enableValidation();
+
 addCardButton.addEventListener('click', () => { 
     popupAddCard.open();
     addCardFormValidator.clearForm();
@@ -191,4 +194,5 @@ editButton.addEventListener('click', () => {
 
 editAvatarButton.addEventListener('click', () => {
     popupEditAvatar.open();
+    editAvatarFormValidator.clearForm();
 })
