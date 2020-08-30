@@ -1,6 +1,8 @@
 import './index.css';
-import {Card} from '../components/Card.js';
-import {FormValidator} from '../components/FormValidator.js'
+import Card from '../components/Card.js';
+import CardUser from '../components/CardUser.js';
+import CardServer from '../components/CardServer.js';
+import {FormValidator} from '../components/FormValidator.js';
 import Section from '../components/Section.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
@@ -26,8 +28,8 @@ const popupEditProfile = new PopupWithForm (
             .catch (err => console.log(err))
     });
 
-const createCard = (newElement) => {
-    const newCard = new Card (
+const createCardUser = (newElement) => {
+    const newCard = new CardUser (
         newElement, 
         '.element-template', 
         (item) => {
@@ -41,10 +43,22 @@ const createCard = (newElement) => {
         cardsList.addItem (cardElement);
 }
 
+const createCardServer = (newElement) => {
+    const newCard = new CardServer (
+        newElement, 
+        '.element-template', 
+        (item) => {
+            popupFullSizeCard.open(item);
+            },
+        );
+        const cardElement = newCard.generateCard();
+        cardsList.addItem (cardElement);
+}
+
 const popupAddCard = new PopupWithForm (
     '.popup_btn_add-element',
     (newElement) => {
-        createCard(newElement);
+        createCardUser(newElement);
         console.log(newElement);
         api.postNewCard('/cards', newElement)
             .then (data => console.log(data))
@@ -68,20 +82,23 @@ addCardFormValidator.enableValidation();
 const cardsList = new Section ({
     items: [],
     renderer: (newElement) => {
-        createCard(newElement);
+        createCardServer(newElement);
         emptyElement.remove();
     }
 },
 '.elements__grid'
 )
 
-cardsList.renderItems();
 
 function createCardList (initialCards) {
     const cardsList = new Section ({
         items: initialCards,
         renderer: (newElement) => {
-            createCard(newElement);
+            if (newElement.owner._id === 'c13cab8ef5f2b7807fb881bf') {
+                createCardUser(newElement);
+            } else {
+                createCardServer(newElement);
+            }
             emptyElement.remove();
         }
     },
