@@ -28,6 +28,10 @@ const popupEditProfile = new PopupWithForm (
             .catch (err => console.log(err))
     });
 
+const popupDeleteCard = new PopupWithConfirm (
+    '.popup_btn_delete-element'
+)
+
 const createCardUser = (newElement) => {
     const newCard = new CardUser (
         newElement, 
@@ -35,8 +39,12 @@ const createCardUser = (newElement) => {
         (item) => {
             popupFullSizeCard.open(item);
             },
-        () => {
+        (element) => {
             popupDeleteCard.open();
+            const deleteHandler = () => {
+                element.remove();
+            }
+            popupDeleteCard.setSubmitHandler(deleteHandler)
         }
         );
         const cardElement = newCard.generateCard();
@@ -65,13 +73,6 @@ const popupAddCard = new PopupWithForm (
             .catch (err => console.log(err))
             }
     );
-
-const popupDeleteCard = new PopupWithConfirm (
-    '.popup_btn_delete-element',
-    () => {
-
-    }
-)
 
 const profileFormValidator = new FormValidator (myConfig, profileForm);
 profileFormValidator.enableValidation();
