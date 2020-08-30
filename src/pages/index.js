@@ -1,7 +1,6 @@
 import './index.css';
 import Card from '../components/Card.js';
 import CardUser from '../components/CardUser.js';
-import CardServer from '../components/CardServer.js';
 import {FormValidator} from '../components/FormValidator.js';
 import Section from '../components/Section.js';
 import PopupWithImage from '../components/PopupWithImage.js';
@@ -43,6 +42,12 @@ const createCardUser = (newElement) => {
             popupDeleteCard.open();
             const deleteHandler = () => {
                 element.remove();
+                api.deleteCard('/cards', element)
+                    .then ((data) => {
+                        console.log(data);
+                        popupDeleteCard.removeSubmitHandler();
+                    })
+                    .catch (err => console.log(err));
             }
             popupDeleteCard.setSubmitHandler(deleteHandler)
         }
@@ -52,7 +57,7 @@ const createCardUser = (newElement) => {
 }
 
 const createCardServer = (newElement) => {
-    const newCard = new CardServer (
+    const newCard = new Card (
         newElement, 
         '.element-template', 
         (item) => {
@@ -60,25 +65,21 @@ const createCardServer = (newElement) => {
             },
         );
         const cardElement = newCard.generateCard();
+        cardElement.querySelector('.element__delete-button').remove();
         cardsList.addItem (cardElement);
 }
 
 const popupAddCard = new PopupWithForm (
     '.popup_btn_add-element',
     (newElement) => {
-        createCardUser(newElement);
-        console.log(newElement);
         api.postNewCard('/cards', newElement)
-            .then (data => console.log(data))
+            .then ((data) => {
+                console.log(data);
+                createCardUser(data);
+            })
             .catch (err => console.log(err))
             }
     );
-
-const profileFormValidator = new FormValidator (myConfig, profileForm);
-profileFormValidator.enableValidation();
-
-const addCardFormValidator = new FormValidator (myConfig, addCardForm);
-addCardFormValidator.enableValidation();
 
 const cardsList = new Section ({
     items: [],
@@ -109,19 +110,6 @@ function createCardList (initialCards) {
     cardsList.renderItems();
 }
 
-addCardButton.addEventListener('click', () => { 
-    popupAddCard.open();
-    addCardFormValidator.clearForm();
-});
-
-editButton.addEventListener('click', () => {
-    popupEditProfile.open();
-    const user = userInfo.getUserInfo();
-    inputName.value = user.name;
-    inputProfession.value = user.profession;
-    profileFormValidator.clearForm();
-})
-
 const api = new Api ({
     baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-14',
     headers: {
@@ -144,5 +132,21 @@ api.getInitialCards('/cards')
     .then (data => createCardList(data))
     .catch(err => console.log(err))
 
+const profileFormValidator = new FormValidator (myConfig, profileForm);
+profileFormValidator.enableValidation();
 
+const addCardFormValidator = new FormValidator (myConfig, addCardForm);
+addCardFormValidator.enableValidation();
 
+addCardButton.addEventListener('click', () => { 
+    popupAddCard.open();
+    addCardFormValidator.clearForm();
+});
+    
+editButton.addEventListener('click', () => {
+    popupEditProfile.open();
+    const user = userInfo.getUserInfo();
+    inputName.value = user.name;
+    inputProfession.value = user.profession;
+    profileFormValidator.clearForm();
+})

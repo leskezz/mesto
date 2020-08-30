@@ -4,6 +4,8 @@ export default class Card {
         this._cardLink = cardData.link;
         this._cardSelector = cardSelector;
         this._handleCardClick = handleCardClick;
+        this._id = cardData._id;
+        this._likes = cardData.likes.length;
     };
 
     _getTemplate() {
@@ -37,7 +39,8 @@ export default class Card {
         this._elementImage.src = this._cardLink;
         this._elementImage.alt = this._cardName;
         this._elementLikes.textContent = this._likes;
-        
+        this._elementImage.id = this._id;
+        this._element.querySelector('.element__like-count').textContent = this._likes;
         return this._element;
     }
 }
