@@ -45,7 +45,7 @@ const createCardUser = (newElement) => {
                 api.deleteCard('/cards', element)
                     .then ((data) => {
                         console.log(data);
-                        popupDeleteCard.removeSubmitHandler();
+//                        popupDeleteCard.removeSubmitHandler();
                     })
                     .catch (err => console.log(err));
             }
