@@ -21,11 +21,14 @@ const popupFullSizeCard = new PopupWithImage ('.popup_btn_card-image');
 const popupEditProfile = new PopupWithForm (
     '.popup_btn_edit-profile',
     (item) => {
+        popupEditProfile.renderLoading();
         api.patchProfile('/users/me', item)
             .then ((data) => {
                 userInfo.setUserInfo(data);
+                popupEditProfile.close();
             })
             .catch (err => console.log(err))
+            .finally(() => popupEditProfile.renderNotLoading('Сохранить'))
     });
 
 const popupDeleteCard = new PopupWithConfirm (
@@ -35,11 +38,30 @@ const popupDeleteCard = new PopupWithConfirm (
 const popupEditAvatar = new PopupWithForm (
     '.popup_btn_edit-avatar',
     (newAvatar) => {
+        popupEditAvatar.renderLoading();
         api.patchAvatar('/users/me/avatar', newAvatar.avatar)
-            .then(data => userInfo.setAvatar(data))
-            .catch (err => console.log(err));
+            .then((data) => {
+                userInfo.setAvatar(data);
+                popupEditAvatar.close();
+            })
+            .catch (err => console.log(err))
+            .finally(() => popupEditAvatar.renderNotLoading('Сохранить'))
     }
 )
+
+const popupAddCard = new PopupWithForm (
+    '.popup_btn_add-element',
+    (newElement) => {
+        popupAddCard.renderLoading();
+        api.postNewCard('/cards', newElement)
+            .then ((data) => {
+                createCardUser(data);
+                popupAddCard.close();
+            })
+            .catch (err => console.log(err))
+            .finally(() => popupAddCard.renderNotLoading('Создать'))
+            }
+    );
 
 const handleLikeClick = (element) => {
     api.getInitialCards('/cards')
@@ -110,17 +132,6 @@ const createCardServer = (newElement) => {
         cardElement.querySelector('.element__delete-button').remove();
         cardsList.addItem (cardElement);
 }
-
-const popupAddCard = new PopupWithForm (
-    '.popup_btn_add-element',
-    (newElement) => {
-        api.postNewCard('/cards', newElement)
-            .then ((data) => {
-                createCardUser(data);
-            })
-            .catch (err => console.log(err))
-            }
-    );
 
 const cardsList = new Section ({
     items: [],
