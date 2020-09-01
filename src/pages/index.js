@@ -65,33 +65,6 @@ const popupAddCard = new PopupWithForm (
     }
 );
 
-const handleLikeClick = (element) => {
-    api.getInitialCards('/cards') // перед постановкой своего лайка делаем запрос на сервер с целью получить актуальные данные по количеству лайков на карточке
-        .then((data) => {
-            const card = data.find((item) => {
-                if (item._id === element.id){
-                    return item
-                }
-            })
-            return card
-        })
-        .then((card) => {
-            let likes = card.likes.length;
-            if (element.querySelector('.element__like-button').classList.contains('element__like-button_active')){
-                likes += 1;
-                element.querySelector('.element__like-count').textContent = likes;
-                api.putLike('/cards/likes', card)
-                    .catch (err => console.log(err))
-            } else {
-                likes -= 1;
-                element.querySelector('.element__like-count').textContent = likes;
-                api.deleteLike('/cards/likes', card)
-                    .catch (err => console.log(err))
-            }
-        })
-        .catch (err => console.log(err))
-}
-
 const handleDeleteClick = (element) => {
     popupDeleteCard.open();
     const deleteHandler = () => {
@@ -114,8 +87,13 @@ const createCardUser = (newElement) => {
         handleCardClick: (name, link) => {
             popupFullSizeCard.open(name, link);
             },
-        handleDeleteClick: handleDeleteClick,
-        handleLikeClick: handleLikeClick
+        handlePutLike: (cardId) => {
+            return api.putLike('/cards/likes', cardId)
+        },
+        handleDeleteLike: (cardId) => {
+            return api.deleteLike('/cards/likes', cardId)
+        },
+        handleDeleteClick: handleDeleteClick
     });
         const cardElement = newCard.generateCard();
         cardsList.addItem (cardElement);
@@ -128,7 +106,12 @@ const createCardServer = (newElement) => {
         handleCardClick: (name, link) => {
             popupFullSizeCard.open(name, link);
             },
-        handleLikeClick: handleLikeClick
+        handlePutLike: (cardId) => {
+                return api.putLike('/cards/likes', cardId)
+            },
+        handleDeleteLike: (cardId) => {
+                return api.deleteLike('/cards/likes', cardId)
+            },
     });
         const cardElement = newCard.generateCard();
         cardElement.querySelector('.element__delete-button').remove();
@@ -182,20 +165,8 @@ Promise.all([
     userInfo.setAvatar(userData);
     createCardList(initialCards);
 })
-.catch(err => console.log(err))
+.catch(err => console.log(err));
 
-/*
-api.getUserData('/users/me')
-    .then ((data) => {
-        userInfo.setUserInfo(data);
-        userInfo.setAvatar(data);
-    })
-    .catch(err => console.log(err)) 
-
-api.getInitialCards('/cards')
-    .then (data => createCardList(data))
-    .catch(err => console.log(err))
-*/
 const profileFormValidator = new FormValidator (myConfig, profileForm);
 profileFormValidator.enableValidation();
 

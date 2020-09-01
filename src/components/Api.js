@@ -58,15 +58,15 @@ export default class Api {
         })
     }
 
-    putLike (likesUrl, card){
-        return this._getResponseData(`${this._baseUrl}${likesUrl}/${card._id}`, {
+    putLike (likesUrl, cardId){
+        return this._getResponseData(`${this._baseUrl}${likesUrl}/${cardId}`, {
             method: 'PUT',
             headers: this._headers, 
         })
     }
 
-    deleteLike (likesUrl, card){
-        return this._getResponseData(`${this._baseUrl}${likesUrl}/${card._id}`, {
+    deleteLike (likesUrl, cardId){
+        return this._getResponseData(`${this._baseUrl}${likesUrl}/${cardId}`, {
             method: 'DELETE',
             headers: this._headers, 
         })
