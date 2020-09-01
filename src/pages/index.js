@@ -109,8 +109,8 @@ const createCardUser = (newElement) => {
     const newCard = new CardUser ({
         cardData: newElement, 
         cardSelector: '.element-template', 
-        handleCardClick: (item) => {
-            popupFullSizeCard.open(item);
+        handleCardClick: (name, link) => {
+            popupFullSizeCard.open(name, link);
             },
         handleDeleteClick: handleDeleteClick,
         handleLikeClick: handleLikeClick
@@ -123,8 +123,8 @@ const createCardServer = (newElement) => {
     const newCard = new Card ({
         cardData: newElement, 
         cardSelector: '.element-template', 
-        handleCardClick: (item) => {
-            popupFullSizeCard.open(item);
+        handleCardClick: (name, link) => {
+            popupFullSizeCard.open(name, link);
             },
         handleLikeClick: handleLikeClick
     });
