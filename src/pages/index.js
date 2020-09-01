@@ -66,36 +66,35 @@ const popupAddCard = new PopupWithForm (
 );
 
 const handleLikeClick = (element) => {
-    api.getInitialCards('/cards')
-    .then((data) => {
-        const card = data.find((item) => {
-            if (item._id === element.id){
-                return item
+    api.getInitialCards('/cards') // перед постановкой своего лайка делаем запрос на сервер с целью получить актуальные данные по количеству лайков на карточке
+        .then((data) => {
+            const card = data.find((item) => {
+                if (item._id === element.id){
+                    return item
+                }
+            })
+            return card
+        })
+        .then((card) => {
+            let likes = card.likes.length;
+            if (element.querySelector('.element__like-button').classList.contains('element__like-button_active')){
+                likes += 1;
+                element.querySelector('.element__like-count').textContent = likes;
+                api.putLike('/cards/likes', card)
+                    .catch (err => console.log(err))
+            } else {
+                likes -= 1;
+                element.querySelector('.element__like-count').textContent = likes;
+                api.deleteLike('/cards/likes', card)
+                    .catch (err => console.log(err))
             }
         })
-        console.log()
-        return card
-    })
-    .then((card) => {
-        let likes = card.likes.length;
-        if (element.querySelector('.element__like-button').classList.contains('element__like-button_active')){
-            likes += 1;
-            element.querySelector('.element__like-count').textContent = likes;
-            api.putLike('/cards/likes', card)
-                .catch (err => console.log(err))
-        } else {
-            likes -= 1;
-            element.querySelector('.element__like-count').textContent = likes;
-            api.deleteLike('/cards/likes', card)
-                .catch (err => console.log(err))
-        }
-    })
+        .catch (err => console.log(err))
 }
 
 const handleDeleteClick = (element) => {
     popupDeleteCard.open();
     const deleteHandler = () => {
-        element.remove();
         api.deleteCard('/cards', element)
             .then ((data) => {
                 console.log(data);
