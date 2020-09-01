@@ -172,6 +172,19 @@ const api = new Api ({
     },
 })
 
+Promise.all([
+    api.getUserData('/users/me'),
+    api.getInitialCards('/cards')
+])
+.then ((values) => {
+    const [userData, initialCards] = values;
+    userInfo.setUserInfo(userData);
+    userInfo.setAvatar(userData);
+    createCardList(initialCards);
+})
+.catch(err => console.log(err))
+
+/*
 api.getUserData('/users/me')
     .then ((data) => {
         userInfo.setUserInfo(data);
@@ -182,7 +195,7 @@ api.getUserData('/users/me')
 api.getInitialCards('/cards')
     .then (data => createCardList(data))
     .catch(err => console.log(err))
-
+*/
 const profileFormValidator = new FormValidator (myConfig, profileForm);
 profileFormValidator.enableValidation();
 
