@@ -6,9 +6,10 @@ import Section from '../components/Section.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
-import {editButton, addCardButton, emptyElement, profileForm, addCardForm, myConfig, inputName, inputProfession, editAvatarButton, editAvatarForm} from '../components/constants.js';
+import {editButton, addCardButton, emptyElement, profileForm, addCardForm, myConfig, inputName, inputProfession, editAvatarButton, editAvatarForm} from '../utils/constants.js';
 import Api from '../components/Api.js';
 import PopupWithConfirm from '../components/PopupWithConfirm.js';
+import {renderLoading} from '../utils/utils.js';
 
 const userInfo = new UserInfo (
     '.profile__name',
@@ -20,48 +21,49 @@ const popupFullSizeCard = new PopupWithImage ('.popup_btn_card-image');
 
 const popupEditProfile = new PopupWithForm (
     '.popup_btn_edit-profile',
-    (item) => {
-        popupEditProfile.renderLoading();
+    (item, button) => {
+        renderLoading({button, isLoading: true, initialText: 'Сохранить'});
         api.patchProfile('/users/me', item)
             .then ((data) => {
                 userInfo.setUserInfo(data);
                 popupEditProfile.close();
             })
             .catch (err => console.log(err))
-            .finally(() => popupEditProfile.renderNotLoading('Сохранить'))
-    });
+            .finally(() => renderLoading({button, isLoading: false, initialText: 'Сохранить'}))
+    }
+);
 
 const popupDeleteCard = new PopupWithConfirm (
     '.popup_btn_delete-element'
-)
+);
 
 const popupEditAvatar = new PopupWithForm (
     '.popup_btn_edit-avatar',
-    (newAvatar) => {
-        popupEditAvatar.renderLoading();
+    (newAvatar, button) => {
+        renderLoading({button, isLoading: true, initialText: 'Сохранить'});
         api.patchAvatar('/users/me/avatar', newAvatar.avatar)
             .then((data) => {
                 userInfo.setAvatar(data);
                 popupEditAvatar.close();
             })
             .catch (err => console.log(err))
-            .finally(() => popupEditAvatar.renderNotLoading('Сохранить'))
+            .finally(() => renderLoading({button, isLoading: false, initialText: 'Сохранить'}))
     }
-)
+);
 
 const popupAddCard = new PopupWithForm (
     '.popup_btn_add-element',
-    (newElement) => {
-        popupAddCard.renderLoading();
+    (newElement, button) => {
+        renderLoading({button, isLoading: true, initialText: 'Создать'});
         api.postNewCard('/cards', newElement)
             .then ((data) => {
                 createCardUser(data);
                 popupAddCard.close();
             })
             .catch (err => console.log(err))
-            .finally(() => popupAddCard.renderNotLoading('Создать'))
-            }
-    );
+            .finally(() => renderLoading({button, isLoading: false, initialText: 'Создать'}))
+    }
+);
 
 const handleLikeClick = (element) => {
     api.getInitialCards('/cards')
@@ -97,7 +99,8 @@ const handleDeleteClick = (element) => {
         api.deleteCard('/cards', element)
             .then ((data) => {
                 console.log(data);
-//                        popupDeleteCard.removeSubmitHandler();
+                element.remove();
+                popupDeleteCard.close();
             })
             .catch (err => console.log(err));
     }

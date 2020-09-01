@@ -9,7 +9,6 @@ export default class PopupWithConfirm extends Popup {
         this._handleFormSubmit = (evt) => {
             evt.preventDefault();
             func();
-            this.close();
         }
         this._handleFormSubmit = this._handleFormSubmit.bind (this);
         this._popup.addEventListener('submit', this._handleFormSubmit)
